@@ -1,0 +1,19 @@
+<% provide(:title, 'Registracion') %>
+<h1>Complete los campos con los datos solicitados</h1>
+
+<div class="row">
+ <div class="col-md-6 col-md-offset-3">
+    <%= form_for(@user)	do |f| %>
+    <%=	render 'shared/error_messages' %>
+    <%= f.label	:Nombre %>
+    <%= f.text_field :name %>
+    <%= f.label :correo %>
+    <%= f.email_field :email %>
+    <%= f.label :clave %>
+    <%= f.password_field :password %>
+    <%= f.label :password_confirmation, "Confirme la clave" %>
+    <%= f.password_field :password_confirmation %>
+    <%= f.submit "Crear mi cuenta", class: "btn btn-primary" %>
+    <% end %>
+ </div>
+</div>

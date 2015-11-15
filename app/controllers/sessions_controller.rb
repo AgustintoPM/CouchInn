@@ -5,12 +5,12 @@ class SessionsController < ApplicationController
   def create
     user = User.find_by(email: params[:session][:email].downcase)
     if user && user.authenticate(params[:session][:password])
-	log_in user # equal to log_in user_url(user) because rails conversion
-	params[:session][:remember_me] == '1' ? remember(user) : forget(user)
-    redirect_to user
+	    log_in user # equal to log_in user_url(user) because rails conversion
+	    params[:session][:remember_me] == '1' ? remember(user) : forget(user)
+      redirect_back_or user
     else
-	flash.now[:danger] = 'Combinacion de email/clave invalida'# Loggin error
-	render 'new'
+	    flash.now[:danger] = 'Combinacion de email/clave invalida'# Loggin error
+	    render 'new'
     end
   end
 

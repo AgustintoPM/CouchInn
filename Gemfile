@@ -3,7 +3,11 @@ source 'https://rubygems.org'
 
 gem 'bootstrap-sass', '~> 3.2.0'
 gem 'autoprefixer-rails'
-gem 'bcrypt', '3.1.7'
+gem 'bcrypt', '3.1.7' #maneja la creacion de hash para claves y demas..
+gem 'faker', '1.4.2' #permite simular la creacion de muchos usuarios automaticamente
+gem 'will_paginate', '3.0.7' #sirve para mostrar cierta cantidad de usuarios
+gem 'bootstrap-will_paginate', '0.0.10'#linkea bootstrap con willpaginate
+
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.4'

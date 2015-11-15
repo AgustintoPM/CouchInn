@@ -11,7 +11,7 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
 
 	test "login with invalid information" do
 		get login_path
-		post login_path, session: { email: @user.email,	password: 						'password' }
+		post login_path, session: { email: @user.email,	password: 'password' }
 		assert	is_logged_in?		
 		assert_redirected_to @user #check for the correct redirect target
 		follow_redirect! #visit the target page
@@ -31,7 +31,7 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
 	end
 
 
-	test "login	with	remembering" do
+	test "login	with remembering" do
 		log_in_as(@user, remember_me: '1')
 		assert_not_nil cookies['remember_token']
 	end

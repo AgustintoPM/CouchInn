@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params[:session][:password])
 	log_in user # equal to log_in user_url(user) because rails conversion
 	params[:session][:remember_me] == '1' ? remember(user) : forget(user)
-  redirect_to user
+    redirect_to user
     else
 	flash.now[:danger] = 'Combinacion de email/clave invalida'# Loggin error
 	render 'new'

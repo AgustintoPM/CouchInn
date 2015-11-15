@@ -1,0 +1,3 @@
+Hola <%= @user.name %>,
+Bienvenido/a a CouchInn! Haga click en el siguiente vinculo para activar su cuenta:
+<%= edit_account_activation_url(@user.activation_token, email: @user.email) %>

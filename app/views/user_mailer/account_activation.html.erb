@@ -1,0 +1,6 @@
+<h1>Active su cuenta</h1>
+<p>Hola <%= @user.name %>,</p>
+<p>
+Bienvenido/a a CouchInn! Para activar su cuenta haga click en el siguiente vinculo:
+</p>
+<%=	link_to	"Activar",	edit_account_activation_url(@user.activation_token,email: @user.email) %>

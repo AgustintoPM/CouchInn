@@ -18,9 +18,9 @@ class UsersController < ApplicationController
   def	create
    @user = User.new(user_params)
    if @user.save 
-	   log_in  @user
-     flash[:success] = "Bienvenido a CouchInn"	
-	   redirect_to @user
+	    UserMailer.account_activation(@user).deliver_now
+      flash[:info] = "Verifique su correo para activar su cuenta, por vafor. El link estara disponible por dos horas."
+      redirect_to root_url
    else
     render 'new'
    end

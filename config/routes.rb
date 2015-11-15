@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  get 'password_resets/new'
+
+  get 'password_resets/edit'
+
  root 'static_pages#home'
 
  get 'help' => 'static_pages#help'
@@ -18,7 +22,13 @@ Rails.application.routes.draw do
 
  delete	'logout' => 'sessions#destroy'
 
+ #agrego esto  por este problema:
+ #No route matches {:action=>"edit", :controller=>"account_activations", :email=>"ani_bellas@hotmail.com", :id=>nil} missing required keys: [:id]
+ get 'account_activation' => 'account_activations#edit', :as => :edit_account_activation
+
  resources :users
+ resources :account_activations, only: [:edit]
+ resources :password_resets, only: [:new, :create, :edit, :update]
 
 
   # The priority is based upon order of creation: first created -> highest priority.

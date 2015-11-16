@@ -7,6 +7,9 @@ gem 'bcrypt', '3.1.7' #maneja la creacion de hash para claves y demas..
 gem 'faker', '1.4.2' #permite simular la creacion de muchos usuarios automaticamente
 gem 'will_paginate', '3.0.7' #sirve para mostrar cierta cantidad de usuarios
 gem 'bootstrap-will_paginate', '0.0.10'#linkea bootstrap con willpaginate
+gem "letter_opener", :group => :development#simula el servicio smtp abriendo una ventana en el navegador
+gem 'database_cleaner', '~> 1.5', '>= 1.5.1'
+
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

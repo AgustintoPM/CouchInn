@@ -5,21 +5,22 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-User.create!(name: "Example User",
-			 email: "example@gmail.com",
-			 password: "foobar",
-			 password_confirmation: "foobar",
+User.create!(name: "adminangelica",
+			 email: "angelicabufartanelo@gmail.com",
+			 password: "123456789",
+			 password_confirmation: "123456789",
 			 activated:	true,
 			 admin: true,
 			 activated_at: Time.zone.now)
 70.times do |n|
 		name = Faker::Name.name
-		email = "example-#{n+1}@gmail.org"
-		password = "password"
+		email = "#{n+1}@gmail.org"
+		password = "123456789"
 		User.create!(name: name,
 					email: email,
 					password: password,
 					password_confirmation: password,
+					admin: false,
 					activated:	true,
 					activated_at: Time.zone.now)
 end

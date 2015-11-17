@@ -4,7 +4,7 @@ class PasswordResetsTest < ActionDispatch::IntegrationTest
   
 	def	setup
 		ActionMailer::Base.deliveries.clear
-		@user = users(:michael)
+		@user = users(:agustin)
 	end
 
 	test "password resets" do
@@ -48,14 +48,15 @@ class PasswordResetsTest < ActionDispatch::IntegrationTest
 										email: user.email,
 										user: { password: " ",
 												password_confirmation: "foobar" }
-		assert_not flash.empty
+		assert_not flash.empty?
 		assert_template 'password_resets/edit'
 		# Valid password & confirmation
 		patch password_reset_path(user.reset_token),
 									email:	user.email,
 									user:{ password: "foobaz",
 								 		   password_confirmation: "foobaz" }
-		assert	is_logged_in? assert_not	flash.empty?
+		assert	is_logged_in? 
+		assert_not	flash.empty?
 		assert_redirected_to user
 	end
 

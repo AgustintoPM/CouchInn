@@ -18,7 +18,8 @@ class UsersController < ApplicationController
   def	create
    @user = User.new(user_params)
    if @user.save 
-	    UserMailer.account_activation(@user).deliver_now
+      @user.send_activation_email
+	    #UserMailer.account_activation(@user).deliver_now
       flash[:info] = "Verifique su correo para activar su cuenta, por vafor. El link estara disponible por dos horas."
       redirect_to root_url
    else
@@ -32,7 +33,7 @@ class UsersController < ApplicationController
 
   def destroy
     User.find(params[:id]).destroy
-    flash[:success] = "User deleted"
+    flash[:success] = "Usario borrado"
     redirect_to users_url
     end
 

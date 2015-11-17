@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
 	
 	attr_accessor :remember_token, :activation_token, :reset_token
 	before_save { self.email = email.downcase }
-	
+	before_create :create_activation_digest
 	has_secure_password
 	validates :password, length: { minimum: 6 }, allow_blank: true
 	validates :name, presence: true, length: {maximum: 51}	
@@ -32,7 +32,7 @@ class User < ActiveRecord::Base
 	def	authenticated?(attribute, remember_token)
 		digest = send("#{attribute}_digest")
 		return false if digest.nil?
-		BCrypt::Password.new(digest).is_password?(token)
+		BCrypt::Password.new(digest).is_password?(remember_token)
 	end
 
 	# Forgets a user.
@@ -40,6 +40,7 @@ class User < ActiveRecord::Base
       update_attribute(:remember_digest, nil)
     end
 
+    # Activates an account.
 	def	activate
 		update_attribute(:activated, true)
 		update_attribute(:activated_at, Time.zone.now)

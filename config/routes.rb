@@ -6,6 +6,8 @@ Rails.application.routes.draw do
 
  root 'static_pages#home'
 
+# get 'sessions/new'
+
  get 'help' => 'static_pages#help'
 
  get 'about' => 'static_pages#about'
@@ -24,7 +26,7 @@ Rails.application.routes.draw do
 
  #agrego esto  por este problema:
  #No route matches {:action=>"edit", :controller=>"account_activations", :email=>"ani_bellas@hotmail.com", :id=>nil} missing required keys: [:id]
- get 'account_activation' => 'account_activations#edit', :as => :edit_account_activation
+ #get 'account_activation' => 'account_activations#edit', :as => :edit_account_activation
 
  resources :users
  resources :account_activations, only: [:edit]

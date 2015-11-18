@@ -10,6 +10,7 @@ default: &default
   timeout: 5000
   username: admin
   password: Gjo4712058
+  host: localhost
 
 development:
   <<: *default

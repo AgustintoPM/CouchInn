@@ -23,6 +23,7 @@ Rails.application.routes.draw do
  post 'login' => 'sessions#create'
 
  delete	'logout' => 'sessions#destroy'
+  
 
  #agrego esto  por este problema:
  #No route matches {:action=>"edit", :controller=>"account_activations", :email=>"ani_bellas@hotmail.com", :id=>nil} missing required keys: [:id]
@@ -31,6 +32,8 @@ Rails.application.routes.draw do
  resources :users
  resources :account_activations, only: [:edit]
  resources :password_resets, only: [:new, :create, :edit, :update]
+ resources :hospedajes
+  
 
 
   # The priority is based upon order of creation: first created -> highest priority.

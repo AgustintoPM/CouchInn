@@ -7,7 +7,7 @@
 	<li><%= link_to "Ayuda", help_path %></li>
 	<% if logged_in? %>
 	  		<li><%= link_to "Usuarios", users_path %></li>
-	  		<% if current_user.admin? && logged_in %>
+	  		<% if current_user.admin? && logged_in? %>
 	  			<li><%= link_to "Tipos", tipos_path %></li>
 	  		<% end %>
 	  		<li class="dropdown">

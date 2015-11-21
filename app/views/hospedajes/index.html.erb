@@ -7,6 +7,7 @@
 		<th> Foto </th>
 		<th> Lugar </th>
 		<th> Detalles </th>
+		<th> Eliminar </th>
 	</tr>
 
 	<% hospedajes = Hospedaje.all %>
@@ -17,6 +18,9 @@
 			<td> <%= hospedaje.lugar %> </td>
 			<td>
 				<%= link_to "Ver", hospedaje %>
+			</td>
+			<td>
+				<%= link_to "Borrar", hospedaje, method: :delete %>
 			</td>
 		</tr>
 	<% end %>

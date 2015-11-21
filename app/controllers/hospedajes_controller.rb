@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 class HospedajesController < ApplicationController
 	before_action :get_hospedaje, only:[:edit, :update, :destroy]
 	
@@ -17,10 +17,4 @@ class HospedajesController < ApplicationController
 	def destroy
 		@hospedaje.destroy()
 	end
-=======
-class HospedajesController < ApplicationController
-	def show
-		@hospedaje = Hospedaje.find(params[:id])
-	end
->>>>>>> 59d4d26b295cfa1347f4b3ed5835829a019fa4e6
 end

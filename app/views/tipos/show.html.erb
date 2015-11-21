@@ -1,8 +1,13 @@
 
-
 <p>
   <strong>Nombre:</strong>
   <%= @tipo.nombre %>
+  <%if @tipo.disponible
+  	   @tipo.nombre
+  	else "chau"
+  	end
+  	%>
+
 </p>
 
 <%= link_to 'Editar', edit_tipo_path(@tipo), class: "btn btn-primary" %>

@@ -1,6 +1,16 @@
-<% provide(:title, 'Crear tipo') %>
-<h1>Complete los campos con los datos solicitados</h1>
+<% if logged_in?  %>	
+	<% if current_user.admin? %>
+			<% provide(:title, 'Crear tipo') %>
+			<h1>Complete los campos con los datos solicitados</h1>
 
-<%= render 'form' %>
+			<%= render 'form' %>
 
-<%= link_to 'Atras', tipos_path, class: "btn btn-primary" %>
+			
+	<% else %>
+		<h1>No tiene permisos</h1>
+
+	<% end %>
+	<%= link_to 'Atras', tipos_path, class: "btn btn-primary" %>
+<% else %>
+  <h1> Debe Iniciar sesion</h1>
+<% end %>

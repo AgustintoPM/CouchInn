@@ -1,0 +1,12 @@
+<% if logged_in?  %>	
+	<% if current_user.admin? && logged_in? %>
+		<h1>Editar tipos</h1>
+		<%= render 'form' %>
+		
+	<% else %>
+		<h1>No tiene permisos</h1>
+	<% end %>
+	<%= link_to 'Atras', tipos_path, class: "btn btn-primary" %>
+<% else %>
+  <h1> Debe Iniciar sesion</h1>
+<% end %>

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <h1> Listado de Hospedajes </h1>
 
 <table class="table">
@@ -29,4 +30,33 @@
 		<tr> <td colspan="3"> No hay hospedajes </td> </tr>
 	<% end %>
 
+=======
+<h1> Listado de Hospedajes </h1>
+
+<table class="table">
+
+	<tr>
+		<th> Titulo </th>
+		<th> Foto </th>
+		<th> Lugar </th>
+		<th> Detalles </th>
+	</tr>
+
+	<% hospedajes = Hospedaje.all %>
+	<% hospedajes.each do |hospedaje| %>
+		<tr>
+			<td> <%= hospedaje.titulo %> </td>
+			<td> <%= image_tag hospedaje.foto %> </td>
+			<td> <%= hospedaje.lugar %> </td>
+			<td>
+				<%= link_to "Ver", hospedaje %>
+			</td>
+		</tr>
+	<% end %>
+
+	<% if hospedajes.size == 0 %>
+		<tr> <td colspan="3"> No hay hospedajes </td> </tr>
+	<% end %>
+
+>>>>>>> 59d4d26b295cfa1347f4b3ed5835829a019fa4e6
 </table>

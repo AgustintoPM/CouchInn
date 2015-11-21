@@ -1,0 +1,17 @@
+<% if current_user.admin? && logged_in? %>
+
+	<p>
+ 	<strong>Nombre:</strong>
+  	<%= @tipo.nombre %>
+  
+
+	</p>
+
+	<%= link_to 'Editar', edit_tipo_path(@tipo), class: "btn btn-primary" %>
+ 	&nbsp
+
+<% else %>
+	<h1>No tiene permisos</h1>
+
+<% end %>
+<%= link_to 'Atras', tipos_path , class: "btn btn-primary"%>

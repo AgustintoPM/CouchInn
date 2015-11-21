@@ -1,0 +1,40 @@
+<% if logged_in?  %>
+  <% if current_user.admin?  %>
+      <h1>Lista de Tipos</h1>
+
+      <table class="table">
+
+      <tr>
+        <th> Nombre </th>
+        <th> Ver </th>
+        <th> Editar </th>
+        <th> Eliminar </th>
+      </tr>
+
+      <% tipos = Tipo.all %>
+      <% tipos.each do |tipo| %>
+      <tr>
+        <td><%= tipo.nombre %></td>
+          <td><%= link_to 'Ver', tipo , class: "btn btn-primary"%></td>
+          <td><%= link_to 'Editar', edit_tipo_path(tipo), class: "btn btn-primary" %></td>
+          <td><%= link_to 'Eliminar', tipo, method: :delete, data: { confirm: 'esta seguro?' }, class: "btn btn-primary" %></td>
+        </td>
+      </tr>
+      <% end %>
+
+      <% if tipos.size == 0 %>
+          <tr> <td colspan="3"> No hay tipos </td> </tr>
+      <% end %>
+
+      </table>
+    <br>
+
+    <%= link_to 'Crear tipo', new_tipo_path,  class: "btn btn-primary" %>
+  <% else %>
+
+        <h1>no tiene permisos</h1>
+
+  <% end %>
+<% else %>
+  <h1> Debe Iniciar sesion</h1>
+<% end %>

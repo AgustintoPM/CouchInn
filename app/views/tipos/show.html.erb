@@ -3,7 +3,21 @@
 	<p>
  	<strong>Nombre:</strong>
   	<%= @tipo.nombre %>
-  
+<p>
+
+
+<%@tipo.hospedajes.order(:id).each do |hospedaje|%>
+<p><%= link_to hospedaje.titulo, hospedaje %></p>
+<%= image_tag hospedaje.foto %>
+<p>Ubicacion: <%= hospedaje.lugar %></p>
+<p>Fecha publicacion: <%= hospedaje.fecha %></p>
+<p>Capacidad personas: <%= hospedaje.capacidad %></p>
+<p>Descripcion: <%= hospedaje.descripcion %></p>
+<p>Tipo: <%= Tipo.find(hospedaje.tipo_id).nombre %></p>
+<p> -------- </p>
+
+
+  <%end%>
 
 	</p>
 

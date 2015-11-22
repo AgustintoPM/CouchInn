@@ -4,8 +4,8 @@
 <p>Fecha publicacion: <%= @hospedaje.fecha %></p>
 <p>Capacidad personas: <%= @hospedaje.capacidad %></p>
 <p>Descripcion: <%=@hospedaje.descripcion %></p>
-
 <p>Tipo: <%= Tipo.find(@hospedaje.tipo_id).nombre %></p>
+<p>Usuario: <%= User.find(@hospedaje.user_id).name %></p>
 
 
 

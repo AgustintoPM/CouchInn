@@ -31,9 +31,11 @@ class HospedajesController < ApplicationController
   def create
    
     @hospedaje = Hospedaje.new(hospedaje_params)
+    @hospedaje.user_id = current_user.id
     if @hospedaje.save
       flash[:success] = "Hospedaje publicado"
       redirect_to @hospedaje
+      
     else 
       render 'new'
     end

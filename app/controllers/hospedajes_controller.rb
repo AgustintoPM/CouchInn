@@ -29,6 +29,7 @@ class HospedajesController < ApplicationController
 		@hospedaje = Hospedaje.find(params[:id])
 	end
   def create
+   
     @hospedaje = Hospedaje.new(hospedaje_params)
     if @hospedaje.save
       flash[:success] = "Hospedaje publicado"

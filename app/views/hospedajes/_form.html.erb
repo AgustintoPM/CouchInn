@@ -1,4 +1,5 @@
 <%= form_for(@hospedaje) do |f| %>
+	<%=	render 'error_messages' %>
     <%= f.label	:Titulo %>
     <%= f.text_field :titulo %>
     <%= f.label :foto%>

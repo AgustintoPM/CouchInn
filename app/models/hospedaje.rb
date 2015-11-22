@@ -6,5 +6,4 @@ class Hospedaje < ActiveRecord::Base
   validates :lugar, presence:true
   validates :fecha, presence:true
   validates :capacidad, presence:true
-  belongs_to :tipos
 end

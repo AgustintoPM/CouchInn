@@ -1,5 +1,7 @@
 class TiposController < ApplicationController
   before_action :set_tipo, only: [:show, :edit, :update, :destroy]
+   before_action :admin_user, only: [:show, :edit, :update, :destroy]
+   before_action :logged_in_user, only: [:new, :edit, :update, :destroy]
   def index
     @tipos = Tipo.all
   end
@@ -46,7 +48,13 @@ class TiposController < ApplicationController
   #end
 
 
-
+ def logged_in_user
+      unless logged_in?
+        store_location
+        flash[:danger] = "Inicie sesion, por favor"
+        redirect_to login_url
+      end
+  end
 
 
 
@@ -71,4 +79,7 @@ class TiposController < ApplicationController
   def tipo_params
   params.require(:tipo).permit(:nombre)
   end
+  def admin_user
+    redirect_to(root_url) unless current_user.admin?
+   end
  end

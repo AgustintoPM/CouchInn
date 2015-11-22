@@ -8,7 +8,7 @@ class HospedajesController < ApplicationController
 	end
   def hospedaje_params 
     params.require(:hospedaje).permit(:titulo, :foto, 
-      :lugar, :fecha, :capacidad)
+      :lugar, :fecha, :capacidad, :tipo_id)
   end
   def new
     @hospedaje = Hospedaje.new

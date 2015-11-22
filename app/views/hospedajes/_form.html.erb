@@ -10,5 +10,7 @@
     <%= f.text_field :fecha %>
 	<%= f.label :capacidad %>
     <%= f.text_field :capacidad %>
+    <%= f.label :tipo_id, "Tipo" %><br>
+    <%= f.select :tipo_id, Tipo.all.collect { |p| [ p.nombre, p.id ]} %>
 	<%= f.submit "Guardar", class: "btn btn-primary" %>
 <% end %>

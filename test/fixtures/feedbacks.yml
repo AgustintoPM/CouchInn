@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  content: MyText
+  feedbackable_id: 
+  feedbackable_type: Feedbackable
+
+two:
+  content: MyText
+  feedbackable_id: 
+  feedbackable_type: Feedbackable

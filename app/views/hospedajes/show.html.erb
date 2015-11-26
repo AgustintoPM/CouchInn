@@ -6,7 +6,36 @@
 <p>Descripcion: <%=@hospedaje.descripcion %></p>
 <p>Tipo: <%= Tipo.find(@hospedaje.tipo_id).nombre %></p>
 <p>Usuario: <%= User.find(@hospedaje.user_id).name %></p>
+<p></p>
+<%= link_to "Reservar", new_reserva_path(@hospedaje.id) %>
+
+
+<p></p>
 
 
 
+<table class="table">
+<b> Listado Reservas asociadas </b>
+	<tr>
+		<th> Estado </th>
+		<th> User id </th>
+		<th> Aceptar solicitud </th>
+		<th> Detalles </th>
+		
+	</tr>
 
+	<% reservas = Reserva.all %>
+	<% reservas.each do |r| %>
+		<tr>
+		 <% if r.hospedaje_id == @hospedaje.id %>
+			<td> <%= r.aceptado %> </td>
+			<td> <%= link_to User.find(r.user_id).name, controller: "users", action: "show", id: r.user_id %> </td>
+			<td> <%= link_to "Aceptar", controller: "reservas", action: "aceptar", id: r.id %> </td>
+			<td>
+				<%= link_to "Ver", r %>
+			</td>
+			<% end %>
+		</tr>
+	<% end %>
+</table>
+<%= link_to 'Volver', :back , class: "btn btn-primary"%>

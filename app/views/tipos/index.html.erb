@@ -1,4 +1,4 @@
-<% if logged_in?  %>
+<% if logged_in?   %>
   <% if current_user.admin?  %>
       <h1>Lista de Tipos</h1>
 
@@ -14,17 +14,17 @@
       <% tipos = Tipo.all %>
       <% tipos.each do |tipo| %>
       <tr>
-        <td><%= tipo.nombre %></td>
-          <td><%= link_to 'Ver', tipo , class: "btn btn-primary"%></td>
-          <td><%= link_to 'Editar', edit_tipo_path(tipo), class: "btn btn-primary" %></td>
-          <td><%= link_to 'Eliminar', tipo, method: :delete, data: { confirm: 'esta seguro?' }, class: "btn btn-primary" %></td>
+          <% if tipo.disponible == true   %>
+            <td><%= tipo.nombre %></td>
+            <td><%= link_to 'Ver', tipo , class: "btn btn-primary"%></td>
+            <td><%= link_to 'Editar', edit_tipo_path(tipo), class: "btn btn-primary" %></td>
+            <td><%= link_to 'Eliminar', tipo, method: :delete, data: { confirm: 'esta seguro?' }, class: "btn btn-primary" %></td>
+          <% end %>
         </td>
       </tr>
       <% end %>
 
-      <% if tipos.size == 0 %>
-          <tr> <td colspan="3"> No hay tipos </td> </tr>
-      <% end %>
+      
 
       </table>
     <br>

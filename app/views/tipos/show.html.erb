@@ -1,23 +1,21 @@
 <% if current_user.admin? && logged_in? %>
-
 	<p>
  	<strong>Nombre:</strong>
   	<%= @tipo.nombre %>
-<p>
+  	<p>
 
+	<p> Disponible: <%= @tipo.disponible%></p>
 
-<%@tipo.hospedajes.order(:id).each do |hospedaje|%>
-<p><%= link_to hospedaje.titulo, hospedaje %></p>
-<%= image_tag hospedaje.foto %>
-<p>Ubicacion: <%= hospedaje.lugar %></p>
-<p>Fecha publicacion: <%= hospedaje.fecha %></p>
-<p>Capacidad personas: <%= hospedaje.capacidad %></p>
-<p>Descripcion: <%= hospedaje.descripcion %></p>
-<p>Tipo: <%= Tipo.find(hospedaje.tipo_id).nombre %></p>
-<p> -------- </p>
+	<%@tipo.hospedajes.order(:id).each do |hospedaje|%>
+		<p><%= link_to hospedaje.titulo, hospedaje %></p>
+		<%= image_tag hospedaje.foto %>
+		<p>Ubicacion: <%= hospedaje.lugar %></p>
+		<p>Fecha publicacion: <%= hospedaje.fecha %></p>
+		<p>Capacidad personas: <%= hospedaje.capacidad %></p>
+		<p>Descripcion:<%= hospedaje.descripcion %></p>
+		<p>Tipo: <%= Tipo.find(hospedaje.tipo_id).nombre %></p>
 
-
-  <%end%>
+    <%end%>
 
 	</p>
 
@@ -28,4 +26,4 @@
 	<h1>No tiene permisos</h1>
 
 <% end %>
-<%= link_to 'Atras', tipos_path , class: "btn btn-primary"%>
+<%= link_to 'Volver', tipos_path , class: "btn btn-primary"%>

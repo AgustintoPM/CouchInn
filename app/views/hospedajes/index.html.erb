@@ -1,5 +1,5 @@
 
-<h1> Listado de Hospedajes </h1>
+<center><h1> Bienvenido a CouchInn </h1></center>
 
 <table class="table">
 
@@ -31,4 +31,7 @@
 	<% end %>
 
 
-
+</table>
+<% if logged_in?   %>
+	<%= link_to 'Crear Hospedaje', new_hospedaje_path,  class: "btn btn-primary" %>
+<% end %>

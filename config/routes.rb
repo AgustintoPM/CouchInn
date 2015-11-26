@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   get 'password_resets/edit'
 
- root 'static_pages#home'
+ root 'hospedajes#index'
 
 # get 'sessions/new'
 

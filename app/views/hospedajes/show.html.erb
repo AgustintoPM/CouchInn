@@ -30,7 +30,7 @@
 		 <% if r.hospedaje_id == @hospedaje.id %>
 			<td> <%= r.aceptado %> </td>
 			<td> <%= link_to User.find(r.user_id).name, controller: "users", action: "show", id: r.user_id %> </td>
-			<td> <%= link_to "Aceptar", controller: "reservas", action: "aceptar", id: "1" %> </td>
+			<td> <%= link_to "Aceptar", controller: "reservas", action: "aceptar", id: r.id %> </td>
 			<td>
 				<%= link_to "Ver", r %>
 			</td>
@@ -38,3 +38,4 @@
 		</tr>
 	<% end %>
 </table>
+<%= link_to 'Volver', :back , class: "btn btn-primary"%>

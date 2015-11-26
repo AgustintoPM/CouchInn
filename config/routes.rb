@@ -23,8 +23,10 @@ Rails.application.routes.draw do
  post 'login' => 'sessions#create'
 
  delete	'logout' => 'sessions#destroy'
-  
 
+ #post 'hospedajes/:id' , to: 'hospedajes#show'
+ post 'hospedajes/:id/aceptar', to: 'reservas#aceptar'
+get 'hospedajes/:id/aceptar', to: 'reservas#aceptar'
  #agrego esto  por este problema:
  #No route matches {:action=>"edit", :controller=>"account_activations", :email=>"ani_bellas@hotmail.com", :id=>nil} missing required keys: [:id]
  #get 'account_activation' => 'account_activations#edit', :as => :edit_account_activation
@@ -34,6 +36,7 @@ Rails.application.routes.draw do
  resources :password_resets, only: [:new, :create, :edit, :update]
  resources :hospedajes
  resources :tipos
+ resources :reservas
   
 
 

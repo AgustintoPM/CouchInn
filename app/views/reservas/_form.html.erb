@@ -1,0 +1,24 @@
+<%= form_for(@reserva) do |f| %>
+  <% if @reserva.errors.any? %>
+      <div id="error_explanation">
+      <h2><%= pluralize(@tipo.errors.count, "error") %> prohibited this reserva from being saved:</h2>
+
+      <ul>
+      <% @reserva.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+    </div>
+    <% end %>
+<p>Hospedaje : <%= Hospedaje.find(params[:format]).titulo %></p>
+<p>Capacidad : <%= Hospedaje.find(params[:format]).capacidad %></p>
+<%= image_tag Hospedaje.find(params[:format]).foto %>
+
+ <div class="row">
+ <div class="col-md-6 col-md-offset-3">
+   <%= f.hidden_field :hospedaje_id, :value => params[:format]%>
+   
+    <%= f.submit "Solicitar Reserva", class: "btn btn-primary" %>
+ </div>
+ </div>
+<% end %>

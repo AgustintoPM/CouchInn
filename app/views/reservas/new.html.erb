@@ -1,0 +1,15 @@
+<% if logged_in?  %>	
+	
+			<% provide(:title, 'Reservar') %>
+			<h1>Complete los campos con los datos solicitados</h1>
+
+			<%= render 'form' %>
+
+			
+	
+
+	
+	<%= link_to 'Atras', tipos_path, class: "btn btn-primary" %>
+<% else %>
+  <h1> Debe Iniciar sesion</h1>
+<% end %>

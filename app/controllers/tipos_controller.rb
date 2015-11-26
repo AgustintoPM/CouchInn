@@ -6,6 +6,7 @@ class TiposController < ApplicationController
     @tipos = Tipo.all
   end
   def show
+    @tipo = Tipo.find(params[:id])
 
   end
   def new

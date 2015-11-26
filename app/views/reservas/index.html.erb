@@ -1,0 +1,25 @@
+<table class="table">
+<h1> Listado de Mis Reservas </h1>
+
+	<tr>
+		<th> Estado </th>
+		<th> User id </th>
+		<th> Hospedaje id </th>
+		<th> Detalles </th>
+		
+	</tr>
+
+	<% reservas = Reserva.all %>
+	<% reservas.each do |r| %>
+		<tr>
+		 <% if r.user_id == current_user.id %>
+			<td> <%= r.aceptado %> </td>
+			<td> <%= r.user_id %> </td>
+			<td> <%= r.hospedaje_id %> </td>
+			<td>
+				<%= link_to "Ver", r %>
+			</td>
+			<% end %>
+		</tr>
+	<% end %>
+ </table>

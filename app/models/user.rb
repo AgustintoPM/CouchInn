@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
 	before_save { self.email = email.downcase }
 	before_create :create_activation_digest
 	has_secure_password
+	has_many :user_feedbacks, dependent: :destroy
 	validates :password, length: { minimum: 6 }, allow_blank: true
 	validates :name, presence: true, length: {maximum: 51}	
 	VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i

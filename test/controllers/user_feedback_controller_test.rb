@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class FeedbackTest < ActiveSupport::TestCase
+class UserFeedbackControllerTest < ActionController::TestCase
   # test "the truth" do
   #   assert true
   # end

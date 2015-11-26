@@ -1,0 +1,8 @@
+<li	id="user_feedbacks-<%= user_feedback.id %>">
+		
+		<span class="user"><%= link_to user_feedback.user.name, user_feedback.user %></span>
+		<span class="content"><%= user_feedback.content %></span>
+		<span class="timestamp">
+			Calificacion hecha hace	<%=	time_ago_in_words(user_feedback.created_at)	%>.
+		</span>
+</li>

@@ -25,34 +25,21 @@ class TiposController < ApplicationController
   end
   end
   def destroy
+    @tipo = Tipo.find(params[:id])
     if @tipo.hospedajes.count==0
       @tipo.destroy
       respond_to do |format|
         format.html { redirect_to tipos_url, notice: 'Tipo eliminado.' }
       end
     else
-      @tipo.disponible= false
+      @tipo.disponible = false
+      @tipo.save
       respond_to do |format|
         format.html { redirect_to tipos_url, notice: 'Tipo eliminado logicamente.' }  
       end
     end
   end
 
-  #def destroy
-   # @tipo = Tipo.find(params[:id])
-    #if @tipo.hospedajes.count == 0
-     # @tipo.destroy
-      #flash[:success] = "Tipo Eliminado"
-      #redirect_to tipo_url
-    #else
-     
-     # @tipo.disponible = false
-      #@tipo.save
-      #flash[:success] = "Categoria Eliminada"
-      #redirect_to tipo_url
-     
-   # end
-  #end
 
 
  def logged_in_user

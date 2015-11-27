@@ -7,35 +7,53 @@
 <p>Tipo: <%= Tipo.find(@hospedaje.tipo_id).nombre %></p>
 <p>Usuario: <%= User.find(@hospedaje.user_id).name %></p>
 <p></p>
-<%= link_to "Reservar", new_reserva_path(@hospedaje.id) %>
+<% if logged_in? and current_user.id != @hospedaje.user_id %>
+	<%= link_to "Reservar", new_reserva_path(@hospedaje.id) %>
 
-
+<% end %>
 <p></p>
 
-
+<% if logged_in? and current_user.id == @hospedaje.user_id %>
 
 <table class="table">
 <b> Listado Reservas asociadas </b>
 	<tr>
 		<th> Estado </th>
-		<th> User id </th>
+		<th> Ver Usuario </th>
 		<th> Aceptar solicitud </th>
 		<th> Detalles </th>
 		
 	</tr>
 
-	<% reservas = Reserva.all %>
-	<% reservas.each do |r| %>
-		<tr>
-		 <% if r.hospedaje_id == @hospedaje.id %>
-			<td> <%= r.aceptado %> </td>
-			<td> <%= link_to User.find(r.user_id).name, controller: "users", action: "show", id: r.user_id %> </td>
-			<td> <%= link_to "Aceptar", controller: "reservas", action: "aceptar", id: r.id %> </td>
-			<td>
-				<%= link_to "Ver", r %>
-			</td>
-			<% end %>
-		</tr>
-	<% end %>
+	
+	<% lala =false%>
+
+	 <% reservas = Reserva.all %>
+	 <% reservas.each do |p| %>
+	 	<% lala =p.aceptado%>
+	 <% end %>
+	
+		<% reservas.each do |r| %>
+			<tr>
+			 <% if r.hospedaje_id == @hospedaje.id %>
+				<% if r.aceptado %>
+					<td> Reserva Aceptada </td>
+				<% else %>
+					<td> Reserva Rechazada </td>
+				<% end %>
+				<td> <%= link_to User.find(r.user_id).name, controller: "users", action: "show", id: r.user_id %> </td>
+				<% if not lala %> 
+					<td> <%= link_to "Aceptar", controller: "reservas", action: "aceptar", id: r.id %> </td>
+				<% else %>
+					<td> <%= link_to "Rechazar", controller: "reservas", action: "rechazar", id: r.id %> </td>
+				<% end %>
+				<td>
+					<%= link_to "Ver", r %>
+				</td>
+				<% end %>
+			</tr>
+		<% end %>
+	
 </table>
+<% end %>
 <%= link_to 'Volver', :back , class: "btn btn-primary"%>

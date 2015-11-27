@@ -1,5 +1,12 @@
-
-<center><h1> Bienvenido a CouchInn </h1></center>
+<% if not logged_in?   %>
+	<div class="center jumbotron">
+		<h1>Bienvenido a CouchInn</h1>
+		<h2>¿Desea registrarse?</h2>
+		<%= link_to "Registrarse", signup_path, class: "btn btn-lg btn-primary" %>
+	</div>	
+<% else %>
+	<h1>Bienvenido a CouchInn</h1>
+<% end %>
 
 <table class="table">
 

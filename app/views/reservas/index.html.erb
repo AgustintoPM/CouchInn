@@ -3,8 +3,8 @@
 
 	<tr>
 		<th> Estado </th>
-		<th> User id </th>
-		<th> Hospedaje id </th>
+		
+		<th> Hospedaje  </th>
 		<th> Detalles </th>
 		
 	</tr>
@@ -13,9 +13,13 @@
 	<% @reservas.each do |r| %>
 		<tr>
 		 <% if r.user_id == current_user.id %>
-			<td> <%= r.aceptado %> </td>
-			<td> <%= r.user_id %> </td>
-			<td> <%= r.hospedaje_id %> </td>
+		 	<% if r.aceptado %>
+				<td> Aceptado </td>
+			<% else %>
+				<td> Rechazado </td>
+			<% end %>
+			
+			<td> <%= r.hospedaje.titulo %> </td>
 			<td>
 				<%= link_to "Ver", r %>
 			</td>

@@ -23,6 +23,10 @@ Rails.application.routes.draw do
  post 'login' => 'sessions#create'
 
  delete	'logout' => 'sessions#destroy'
+  
+  
+  get '/search' => 'hospedajes#search'
+  get '/search/hospedajes' => 'hospedajes#consulta'
 
  #post 'hospedajes/:id' , to: 'hospedajes#show'
 post 'hospedajes/:id/aceptar', to: 'reservas#aceptar'

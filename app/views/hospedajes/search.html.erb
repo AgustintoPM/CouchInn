@@ -1,0 +1,14 @@
+<%= form_tag "/search/hospedajes", method: "get" do %>
+<%= label_tag :search_titulo, 'Titulo' %>
+<%= search_field_tag :search_titulo %>
+<%= label_tag :search_lugar, 'Lugar' %>
+<%= search_field_tag :search_lugar %>
+<%= label_tag :search_tipo, 'Tipo' %>
+
+<% t=Tipo.where(:disponible => true).all.collect { |p| [ p.nombre, p.id ]}%>
+
+<%= select_tag :search_Tipo, t%>
+<%= label_tag :search_fecha, 'Fecha de Publicacion' %>
+<%= date_field_tag :search_fecha %>
+<%= submit_tag 'Buscar' %>
+<% end %>

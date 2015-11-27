@@ -1,0 +1,31 @@
+<table class="table">
+
+	<tr>
+		<th> Titulo </th>
+		<th> Foto </th>
+		<th> Lugar </th>
+		<th> Detalles </th>
+		<th> Eliminar </th>
+	</tr>
+
+	<% hospedajes = @res %>
+	<% hospedajes.each do |hospedaje| %>
+		<tr>
+			<td> <%= hospedaje.titulo %> </td>
+			<td> <%= image_tag hospedaje.foto %> </td>
+			<td> <%= hospedaje.lugar %> </td>
+			<td>
+				<%= link_to "Ver", hospedaje %>
+			</td>
+			<td>
+				<%= link_to "Borrar", hospedaje, method: :delete %>
+			</td>
+		</tr>
+	<% end %>
+
+	<% if hospedajes.size == 0 %>
+		<tr> <td colspan="3"> No hay hospedajes </td> </tr>
+	<% end %>
+
+
+</table>

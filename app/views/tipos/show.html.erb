@@ -5,6 +5,7 @@
   	<p>
 
 	<p> Disponible: <%= @tipo.disponible%></p>
+	<p> --------</p>
 
 	<%@tipo.hospedajes.order(:id).each do |hospedaje|%>
 		<p><%= link_to hospedaje.titulo, hospedaje %></p>
@@ -13,7 +14,7 @@
 		<p>Fecha publicacion: <%= hospedaje.fecha %></p>
 		<p>Capacidad personas: <%= hospedaje.capacidad %></p>
 		<p>Descripcion:<%= hospedaje.descripcion %></p>
-		<p>Tipo: <%= Tipo.find(hospedaje.tipo_id).nombre %></p>
+		
 
     <%end%>
 

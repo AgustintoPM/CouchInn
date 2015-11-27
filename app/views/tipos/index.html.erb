@@ -11,8 +11,8 @@
         <th> Eliminar </th>
       </tr>
 
-      <% tipos = Tipo.all %>
-      <% tipos.each do |tipo| %>
+     
+      <% @tipos.each do |tipo| %>
       <tr>
           <% if tipo.disponible == true   %>
             <td><%= tipo.nombre %></td>

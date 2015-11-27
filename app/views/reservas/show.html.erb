@@ -3,9 +3,9 @@
 <p> Hospedaje id: <%= @reserva.hospedaje_id %></p>
 <p>User id: <%= @reserva.user_id %></p>
 
-<p>Hospedaje : <%= Hospedaje.find(@reserva.hospedaje_id).titulo %></p>
-<p>Capacidad : <%= Hospedaje.find(@reserva.hospedaje_id).capacidad %></p>
-<%= image_tag Hospedaje.find(@reserva.hospedaje_id).foto %>
+<p>Hospedaje : <%= @reserva.hospedaje.titulo %></p>
+<p>Capacidad : <%= @reserva.hospedaje.capacidad %></p>
+<%= image_tag @reserva.hospedaje.foto %>
 
 
 <p>Estado: <%= @reserva.aceptado %></p>

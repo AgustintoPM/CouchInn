@@ -16,19 +16,35 @@ class ReservasController < ApplicationController
   end
   def	create
     @reserva = Reserva.new(reserva_params)
-    @reserva.user_id = current_user.id
+    @reserva.hospedaje = Hospedaje.find(@reserva.hospedaje_id)
     @reserva.aceptado = false
-    if @reserva.save
+    @reserva.user= current_user
+    if not Reserva.exists?(:user_id => current_user.id, :hospedaje_id =>@reserva.hospedaje.id) and @reserva.save 
       redirect_to  @reserva, notice: 'reserva creada correctamente'
     else
-      render 'new'
+      redirect_to hospedajes_path
+      flash[:danger] = 'Ya solicito este hospedaje'
+    end
   end
-  end
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
   def destroy
     
       @reserva.destroy
       respond_to do |format|
-        format.html { redirect_to tipos_url, notice: 'Tipo eliminado.' }    
+        format.html { redirect_to reservas_url, notice: 'Tipo eliminado.' }    
     
   	 	end
   end
@@ -50,11 +66,17 @@ class ReservasController < ApplicationController
     @rese.aceptado = true
     @rese.save
   end
+  def rechazar
+     @rese = Reserva.find(params[:id])
+
+    @rese.aceptado = false
+    @rese.save
+  end
 
   def update
     respond_to do |format|
       if @reserva.update(tipo_params)
-        format.html { redirect_to @tipo, notice: 'Reserva editado' }
+        format.html { redirect_to @reserva, notice: 'Reserva editado' }
         
       else
         format.html { render :edit }
@@ -64,9 +86,7 @@ class ReservasController < ApplicationController
   end
   private
   # Use callbacks to share common setup or constraints between actions.
-  def set_tipo
-  @resreva = Reserva.find(params[:id])
-  end
+  
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def reserva_params

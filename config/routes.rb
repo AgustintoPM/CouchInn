@@ -25,8 +25,10 @@ Rails.application.routes.draw do
  delete	'logout' => 'sessions#destroy'
 
  #post 'hospedajes/:id' , to: 'hospedajes#show'
- post 'hospedajes/:id/aceptar', to: 'reservas#aceptar'
+post 'hospedajes/:id/aceptar', to: 'reservas#aceptar'
 get 'hospedajes/:id/aceptar', to: 'reservas#aceptar'
+post 'hospedajes/:id/rechazar', to: 'reservas#rechazar'
+get 'hospedajes/:id/rechazar', to: 'reservas#rechazar'
  #agrego esto  por este problema:
  #No route matches {:action=>"edit", :controller=>"account_activations", :email=>"ani_bellas@hotmail.com", :id=>nil} missing required keys: [:id]
  #get 'account_activation' => 'account_activations#edit', :as => :edit_account_activation

@@ -1,12 +1,16 @@
 
 
-<p> Hospedaje id: <%= @reserva.hospedaje_id %></p>
-<p>User id: <%= @reserva.user_id %></p>
+<p> Hospedaje : <%= @reserva.hospedaje.titulo %></p>
+<p>Usuario : <%= link_to @reserva.user.name , controller: "users", action: "show", id: @reserva.user.id %></p>
 
 <p>Hospedaje : <%= @reserva.hospedaje.titulo %></p>
 <p>Capacidad : <%= @reserva.hospedaje.capacidad %></p>
 <%= image_tag @reserva.hospedaje.foto %>
 
 
-<p>Estado: <%= @reserva.aceptado %></p>
+<% if @reserva.aceptado %>
+	<p> Reserva Aceptada </p>
+<% else %>
+	<p> Reserva Rechazada </p>
+<% end %>
 

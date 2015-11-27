@@ -37,7 +37,7 @@ get 'hospedajes/:id/rechazar', to: 'reservas#rechazar'
  #No route matches {:action=>"edit", :controller=>"account_activations", :email=>"ani_bellas@hotmail.com", :id=>nil} missing required keys: [:id]
  #get 'account_activation' => 'account_activations#edit', :as => :edit_account_activation
 
-get '/users/:id/upgrade', to: 'users#upgrade'
+
 
  resources :users do
   collection do

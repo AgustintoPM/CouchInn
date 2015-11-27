@@ -46,7 +46,9 @@ class UsersController < ApplicationController
   end
 
   def upgrade
-    @users = User.all
+    @user = User.find(params[:format])
+    @user.premium = true
+    @user.save
   end
 
   private

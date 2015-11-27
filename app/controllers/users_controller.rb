@@ -19,7 +19,6 @@ class UsersController < ApplicationController
    @user = User.new(user_params)
    if @user.save 
       @user.send_activation_email
-	    #UserMailer.account_activation(@user).deliver_now
       flash[:info] = "Verifique su correo para activar su cuenta, por vafor. El link estara disponible por dos horas."
       redirect_to root_url
    else
@@ -46,11 +45,20 @@ class UsersController < ApplicationController
 	 end
   end
 
+  def upgrade
+    @users = User.all
+  end
+
   private
    
    def user_params 
-    params.require(:user).permit(:name, :email, 
-                                 :password, :password_confirmation)
+    if @user.premium?
+        params.require(:user).permit(:name, :email, 
+                                 :password, :password_confirmation, :credit_card)
+    else
+        params.require(:user).permit(:name, :email, 
+                                 :password, :password_confirmation) 
+    end
    end
 
    #Confirms an admin user.

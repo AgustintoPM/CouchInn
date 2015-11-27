@@ -12,6 +12,10 @@
 						<%=	f.password_field :password, class: 'form-control' %>
 						<%=	f.label :password_confirmation, "Confirmacion" %>
 						<%=	f.password_field :password_confirmation, class: 'form-control' %>
+						<%if current_user.premium? %>
+							<%=	f.label :Tarjeta_de_credito %>
+							<%=	f.text_field :credit_card, class: 'form-control' %>
+						<% end %>
 						<%=	f.submit "Guardar cambios", class: "btn btn-primary" %>
 				<% end %>
 		</div>

@@ -1,15 +1,20 @@
 class User < ActiveRecord::Base
-  has_many :hospedajes
+  
 	
 	attr_accessor :remember_token, :activation_token, :reset_token
 	before_save { self.email = email.downcase }
 	before_create :create_activation_digest
 	has_secure_password
+	has_many :hospedajes
 	validates :password, length: { minimum: 6 }, allow_blank: true
 	validates :name, presence: true, length: {maximum: 51}	
+	validates :credit_card, numericality: { only_integer: true},
+											length: { is: 16 }, allow_blank: true
 	VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 	validates :email, presence: true, length: { maximum: 255 }, format:{ with: VALID_EMAIL_REGEX }, uniqueness: { case_sensitive: false}
 	
+	#  , message: "La tarjeta de credito contiene solo numeros." , message: "La tarjeta de credito ingresada no contiene 16 digitos" 
+
 	# Returns the hash digest of the given string.
 	def User.digest(string)
 	  cost = ActiveModel::SecurePassword.min_cost ?

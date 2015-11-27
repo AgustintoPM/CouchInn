@@ -11,6 +11,8 @@ User.create!(name: "adminangelica",
 			 password_confirmation: "123456789",
 			 activated:	true,
 			 admin: true,
+			 premium: true,
+			 credit_card: "1111222233334444",
 			 activated_at: Time.zone.now)
 70.times do |n|
 		name = Faker::Name.name
@@ -21,6 +23,7 @@ User.create!(name: "adminangelica",
 					password: password,
 					password_confirmation: password,
 					admin: false,
+					premium: false,
 					activated:	true,
 					activated_at: Time.zone.now)
 end

@@ -31,7 +31,7 @@ class HospedajesController < ApplicationController
 		@hospedaje = Hospedaje.find(params[:id])	
 	end
   def hospedaje_params 
-    params.require(:hospedaje).permit(:titulo, :foto, 
+    params.require(:hospedaje).permit(:titulo, :descripcion, :foto, 
       :lugar, :capacidad, :tipo_id)
   end
   def new

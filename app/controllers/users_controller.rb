@@ -47,17 +47,16 @@ class UsersController < ApplicationController
 
   def upgrade
     @user = User.find(params[:format])
-<<<<<<< HEAD
+
     @user.premium = true
     @user.save
-=======
->>>>>>> 5f7aef23ad97fcbdfc17b9815fc04f57557b5ab0
+
   end
 
   private
    
    def user_params 
-    if @user.premium?
+    if !@user.nil? && @user.premium?
         params.require(:user).permit(:name, :email, 
                                  :password, :password_confirmation, :credit_card)
     else

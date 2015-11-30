@@ -12,7 +12,11 @@
 	<% hospedajes.each do |hospedaje| %>
 		<tr>
 			<td> <%= hospedaje.titulo %> </td>
-			<td> <%= image_tag hospedaje.foto %> </td>
+			<%if (hospedaje.user.premium?) %>
+				<td> <%= image_tag hospedaje.foto, size: "46x40" %> </td>
+			<% else %>
+				<td> <%= image_tag 'anonimo.jpg', size: "46x40" %> </td>
+			<% end %>
 			<td> <%= hospedaje.lugar %> </td>
 			<td>
 				<%= link_to "Ver", hospedaje %>

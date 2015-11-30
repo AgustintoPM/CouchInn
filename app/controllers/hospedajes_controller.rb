@@ -8,30 +8,47 @@ class HospedajesController < ApplicationController
   end
   
   def consulta
+    @res=[]
     titulo=params[:search_titulo]
     lugar=params[:search_lugar]
     tipo=params[:search_tipo]
-    fecha=params[:search_fecha]
-    if (!titulo.blank?)
-      @res=Hospedaje.where("titulo =? ", titulo).all
+    fecha=Date.parse params["search_fecha"].values.join("-")
+    if (!titulo.blank? and !lugar.blank? and !fecha.blank?)
+      @res=Hospedaje.where("titulo =? AND lugar =? AND tipo_id =? or fecha =?", titulo, lugar, tipo, fecha).all
+    else
+      if (!titulo.blank? and !lugar.blank?)
+        @res=Hospedaje.where("titulo =? AND lugar =? AND tipo_id =?",titulo, lugar, tipo).all
+      else
+        if (!titulo.blank? and !fecha.blank?)
+          @res=Hospedaje.where("titulo =? AND tipo_id =? or fecha =?", titulo, tipo, fecha).all
+        else
+          if (!lugar.blank? and !fecha.blank?)
+            @res=Hospedaje.where("lugar =? AND tipo_id =? AND fecha =?", lugar, tipo, fecha).all 
+          else
+            if (!titulo.blank?)
+              @res=Hospedaje.where("titulo =? AND tipo_id =?",titulo, tipo)
+            else
+              if (!lugar.blank?)
+                @res=Hospedaje.where("lugar =? AND tipo_id =?", lugar, tipo)
+              else
+                if (!fecha.blank?)
+                  @res=Hospedaje.where("fecha =? or tipo_id =?", fecha, tipo)
+                else
+                  @res=Hospedaje.where("tipo_id =?", tipo)
+                end
+             end
+            end
+          end
+        end
+      end
     end
-    if (!lugar.blank?)
-      @res=Hospedaje.where("lugar =?", lugar).all
-    end
-    if (!tipo.blank?)
-      @res=Hospedaje.where("tipo =?", tipo).all
-    end
-    if (!fecha.blank?)
-      @res=Hospedaje.where("fecha =?", fecha).all
-    end
-
   end
 	
 	def get_hospedaje
 		@hospedaje = Hospedaje.find(params[:id])	
 	end
   def hospedaje_params 
-    params.require(:hospedaje).permit(:titulo, :foto, 
+    params.require(:hospedaje).permit(:titulo, :descripcion, :foto, 
       :lugar, :capacidad, :tipo_id)
   end
   def new

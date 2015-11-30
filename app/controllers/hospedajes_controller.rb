@@ -12,15 +12,15 @@ class HospedajesController < ApplicationController
     titulo=params[:search_titulo]
     lugar=params[:search_lugar]
     tipo=params[:search_tipo]
-    fecha=params[:search_fecha]
+    fecha=Date.parse params["search_fecha"].values.join("-")
     if (!titulo.blank? and !lugar.blank? and !fecha.blank?)
-      @res=Hospedaje.where("titulo =? AND lugar =? AND tipo_id =? AND fecha =?", titulo, lugar, tipo, fecha).all
+      @res=Hospedaje.where("titulo =? AND lugar =? AND tipo_id =? or fecha =?", titulo, lugar, tipo, fecha).all
     else
       if (!titulo.blank? and !lugar.blank?)
         @res=Hospedaje.where("titulo =? AND lugar =? AND tipo_id =?",titulo, lugar, tipo).all
       else
         if (!titulo.blank? and !fecha.blank?)
-          @res=Hospedaje.where("titulo =? AND tipo_id =? AND fecha =?", titulo, tipo, fecha).all
+          @res=Hospedaje.where("titulo =? AND tipo_id =? or fecha =?", titulo, tipo, fecha).all
         else
           if (!lugar.blank? and !fecha.blank?)
             @res=Hospedaje.where("lugar =? AND tipo_id =? AND fecha =?", lugar, tipo, fecha).all 
@@ -32,7 +32,7 @@ class HospedajesController < ApplicationController
                 @res=Hospedaje.where("lugar =? AND tipo_id =?", lugar, tipo)
               else
                 if (!fecha.blank?)
-                  @res=Hospedaje.where("fecha =? AND tipo_id =?", fecha, tipo)
+                  @res=Hospedaje.where("fecha =? or tipo_id =?", fecha, tipo)
                 else
                   @res=Hospedaje.where("tipo_id =?", tipo)
                 end

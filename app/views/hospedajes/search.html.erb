@@ -9,6 +9,6 @@
 
 <%= select_tag :search_tipo, options_from_collection_for_select(t, "id", "nombre")%>
 <%= label_tag :search_fecha, 'Fecha de Publicacion' %>
-<%= date_field_tag :search_fecha %>
+<%= date_select :search_fecha, include_blank: true %>
 <%= submit_tag 'Buscar' %>
 <% end %>

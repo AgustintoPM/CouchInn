@@ -46,11 +46,35 @@ class UsersController < ApplicationController
   end
 
   def upgrade
-    @user = User.find(params[:format])
+    require 'securerandom'  
+    @user = current_user
+    exito = SecureRandom.random_number.round
+      if exito == 1
+        @user.premium = true
+        @user.save
+        flash[:success] = "Felicitaciones, es usuario premium."
+      else
+        flash[:danger] = "Hubo un error validando su tarjeta, vuelva a intentar en unos minutos, por favor."
+        redirect_to @user 
+      end 
+    end  
 
-    @user.premium = true
-    @user.save
+ 
+  def showUpgrade
+  
+  end
 
+  def quitPremium
+      @user = current_user
+    if @user.premium?
+       @user.premium = false
+        @user.save
+        flash[:success] = "Perfil Actualizado, ya no es mas usuario premium."
+        redirect_to @user
+    end
+  end
+
+  def showPremium
   end
 
   private

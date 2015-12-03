@@ -1,0 +1,19 @@
+<% provide(:title, "Mejorar cuenta")	%>
+<h1>Actualice su cuenta a premium</h1>
+<div class="row">
+		<div class="col-md-6 col-md-offset-3">
+				<h3>Para mejorar su cuenta debera ingresar los digitos de su tarjeta de credito</h3>
+				<h3>El costo de la mejora sera de $10 abonados por unica vez.</h3>
+				<h3>Sus beneficios, todas las publicaciones tendran una foto real adosada en la busqueda.</h3>
+				<%=	label_tag :Tarjeta_de_credito %>
+				<%=	text_field_tag :credit_card %>
+				<%=link_to "Aqui podra mejorar su cuenta", users_upgrade_path, method: :put, class: "btn btn-primary" %>
+		</div>
+</div>
+
+
+
+
+
+
+

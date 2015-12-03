@@ -2,7 +2,7 @@
 <h1>Ingrese sus datos</h1>
 <div class="row">
  <div class="col-md-6 col-md-offset-3">
-    <%#<%= form_for(:session, url: login_path) do |f| %>
+    
     <%= form_for(:session, url: login_path, method: :post) do |f| %>
     
 	<%= f.label :correo%>
@@ -19,6 +19,6 @@
 	
 	<%= f.submit "Ingresar", class: "btn btn-primary"	%>
     <% end %>
- <p>¿No esta registrado? <%= link_to "Registrarme!", signup_path	%></p>
+ <p>¿No esta registrado? <%= link_to "Registrarme!", signup_path %></p>
  </div>
 </div>

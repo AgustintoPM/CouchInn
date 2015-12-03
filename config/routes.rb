@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
  root 'hospedajes#index'
 
-# get 'sessions/new'
+
 
  get 'help' => 'static_pages#help'
 
@@ -24,9 +24,18 @@ Rails.application.routes.draw do
 
  delete	'logout' => 'sessions#destroy'
   
-  
+ get '/users/showPremium' => 'users#showPremium'
+
+ put '/users/quitPremium' => 'users#quitPremium'
+
+ get '/users/showUpgrade' => 'users#showUpgrade'
+ 
+ put '/users/upgrade' => 'users#upgrade'
+
   get '/search' => 'hospedajes#search'
   get '/search/hospedajes' => 'hospedajes#consulta'
+
+
 
  #post 'hospedajes/:id' , to: 'hospedajes#show'
 post 'hospedajes/:id/aceptar', to: 'reservas#aceptar'
@@ -39,11 +48,7 @@ get 'hospedajes/:id/rechazar', to: 'reservas#rechazar'
 
 
 
- resources :users do
-  collection do
-    get 'upgrade'
-  end
- end 
+ resources :users
  resources :account_activations, only: [:edit]
  resources :password_resets, only: [:new, :create, :edit, :update]
  resources :hospedajes

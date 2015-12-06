@@ -6,7 +6,16 @@
 <p>Descripcion: <%=@hospedaje.descripcion %></p>
 <p>Tipo: <%= Tipo.find(@hospedaje.tipo_id).nombre %></p>
 <p>Usuario: <%= User.find(@hospedaje.user_id).name %></p>
-<p></p>
+<p>Comentarios: </p>
+<% if (@hospedaje.comentarios.blank?) %>
+	<p>Ningun usuario ha hecho un comentario a este hospedaje aun</p>
+<% else %>
+	<% comentarios=@hospedaje.comentarios%>
+		<% comentarios.each do |c| %>
+		<p><%=c.user.name%> dijo:</p>
+		<p><%=c.opinion%></p>
+	<%end%>
+<% end %>
 <% if logged_in? and current_user.id != @hospedaje.user_id %>
 	<%= link_to "Reservar", new_reserva_path(@hospedaje.id) %>
 

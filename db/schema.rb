@@ -11,10 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151127030329) do
+ActiveRecord::Schema.define(version: 20151206154956) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "comentarios", force: :cascade do |t|
+    t.text     "opinion"
+    t.string   "hospedaje_id"
+    t.string   "user_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
 
   create_table "hospedajes", force: :cascade do |t|
     t.string   "titulo"
@@ -24,10 +32,11 @@ ActiveRecord::Schema.define(version: 20151127030329) do
     t.boolean  "disponible"
     t.integer  "capacidad"
     t.string   "descripcion"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
     t.integer  "user_id"
     t.integer  "tipo_id"
+    t.string   "comentario_id"
   end
 
   create_table "reservas", force: :cascade do |t|

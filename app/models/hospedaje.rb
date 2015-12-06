@@ -1,5 +1,6 @@
 class Hospedaje < ActiveRecord::Base
   has_many :comentarios
+  has_many :reservas
   belongs_to :tipo
   belongs_to :user
   validates :titulo, :presence => {:message => "Usted debe ingresar un título"}

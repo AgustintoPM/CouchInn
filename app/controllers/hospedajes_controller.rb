@@ -73,6 +73,7 @@ class HospedajesController < ApplicationController
     @hospedaje = Hospedaje.new(hospedaje_params)
     @hospedaje.fecha = Time.now
     @hospedaje.user_id = current_user.id
+    @hospedaje.borrado= false
     if @hospedaje.save
       flash[:success] = "Hospedaje publicado"
       redirect_to @hospedaje
@@ -85,7 +86,12 @@ class HospedajesController < ApplicationController
 	def destroy
     
     if (@hospedaje.user_id== current_user.id) then
-		  @hospedaje.destroy()
+      if (@hospedaje.reservas.count==0)
+		    @hospedaje.destroy()
+      else
+        @hospedaje.borrado=true
+        @hospedaje.save
+      end
       flash[:success] = "Hospedaje  borrado"
     else
       flash[:danger] = "Operacion no permitida"

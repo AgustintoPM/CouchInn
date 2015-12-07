@@ -7,8 +7,8 @@
 
 <% t=Tipo.where(:disponible => true).all.collect %>
 
-<%= select_tag :search_tipo, options_from_collection_for_select(t, "id", "nombre")%>
+<%= select_tag :search_tipo, options_from_collection_for_select(t, "id", "nombre"), include_blank: true%>
 <%= label_tag :search_fecha, 'Fecha de Publicacion' %>
-<%= date_select :search_fecha, include_blank: true %>
+<%= date_select(:search_fecha, "fecha", include_blank: true, end_year: Date.today.year) %>
 <%= submit_tag 'Buscar' %>
 <% end %>

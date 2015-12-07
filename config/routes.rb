@@ -32,10 +32,11 @@ Rails.application.routes.draw do
  
  put '/users/upgrade' => 'users#upgrade'
 
-  get '/search' => 'hospedajes#search'
-  get '/search/hospedajes' => 'hospedajes#consulta'
+ get '/search' => 'hospedajes#search'
+ get '/search/hospedajes' => 'hospedajes#consulta'
 
-
+  #ver los hospedajes de un usuario
+  get '/users/:id/hospedajes' => 'users#hospedajes'
 
  #post 'hospedajes/:id' , to: 'hospedajes#show'
 post 'hospedajes/:id/aceptar', to: 'reservas#aceptar'

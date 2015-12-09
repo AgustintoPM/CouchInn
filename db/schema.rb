@@ -11,7 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20151206203458) do
+=======
+ActiveRecord::Schema.define(version: 20151209021812) do
+>>>>>>> 474995193294c2ed375d9428a2aec8e5a49d6967
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,6 +31,7 @@ ActiveRecord::Schema.define(version: 20151206203458) do
   create_table "credit_cards", force: :cascade do |t|
     t.string   "adress"
     t.string   "cardtype"
+<<<<<<< HEAD
     t.string   "securitynumber"
     t.date     "expdate"
     t.string   "phone"
@@ -34,6 +39,15 @@ ActiveRecord::Schema.define(version: 20151206203458) do
     t.string   "fullnumber"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
+=======
+    t.string   "lastfourdigit"
+    t.datetime "expdate"
+    t.string   "phone"
+    t.string   "name"
+    t.string   "fullnumber"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+>>>>>>> 474995193294c2ed375d9428a2aec8e5a49d6967
   end
 
   create_table "hospedajes", force: :cascade do |t|
@@ -59,6 +73,8 @@ ActiveRecord::Schema.define(version: 20151206203458) do
     t.boolean  "aceptado"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+    t.datetime "desde"
+    t.datetime "hasta"
   end
 
   create_table "tipos", force: :cascade do |t|

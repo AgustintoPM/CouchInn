@@ -11,11 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20151205041804) do
+=======
+ActiveRecord::Schema.define(version: 20151206203458) do
+>>>>>>> bf1ad7d434ce1beceb92c2f13a9d6ed5df13f8a9
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+<<<<<<< HEAD
   create_table "credit_cards", force: :cascade do |t|
     t.string   "adress"
     t.string   "cardtype"
@@ -26,6 +31,14 @@ ActiveRecord::Schema.define(version: 20151205041804) do
     t.string   "fullnumber"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+=======
+  create_table "comentarios", force: :cascade do |t|
+    t.text     "opinion"
+    t.string   "hospedaje_id"
+    t.string   "user_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+>>>>>>> bf1ad7d434ce1beceb92c2f13a9d6ed5df13f8a9
   end
 
   create_table "hospedajes", force: :cascade do |t|
@@ -36,10 +49,12 @@ ActiveRecord::Schema.define(version: 20151205041804) do
     t.boolean  "disponible"
     t.integer  "capacidad"
     t.string   "descripcion"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
     t.integer  "user_id"
     t.integer  "tipo_id"
+    t.string   "comentario_id"
+    t.boolean  "borrado"
   end
 
   create_table "reservas", force: :cascade do |t|

@@ -12,29 +12,61 @@ class HospedajesController < ApplicationController
     titulo=params[:search_titulo]
     lugar=params[:search_lugar]
     tipo=params[:search_tipo]
-    fecha=Date.parse params["search_fecha"].values.join("-")
-    if (!titulo.blank? and !lugar.blank? and !fecha.blank?)
-      @res=Hospedaje.where("titulo =? AND lugar =? AND tipo_id =? or fecha =?", titulo, lugar, tipo, fecha).all
+    v_aux=params[:search_fecha]
+    if (!v_aux["fecha(1i)"].blank? and !v_aux["fecha(2i)"].blank? and !v_aux["fecha(3i)"].blank?)
+      fecha=Date.parse params[:search_fecha].values.join("-")
     else
-      if (!titulo.blank? and !lugar.blank?)
-        @res=Hospedaje.where("titulo =? AND lugar =? AND tipo_id =?",titulo, lugar, tipo).all
+      fecha=' '
+    end
+    
+    if (!titulo.blank? and !lugar.blank? and !fecha.blank? and !tipo.blank?)
+      @res=Hospedaje.where("titulo like ? AND lugar like ? AND tipo_id =? AND fecha =? AND borrado =?", "%#{titulo}%", "%#{lugar}%", tipo, fecha, false).all
+    else
+      if (!titulo.blank? and !lugar.blank? and !tipo.blank?)
+        @res=Hospedaje.where("titulo like ? AND lugar like ? AND tipo_id =? AND borrado =?", "%#{titulo}%", "%#{lugar}%", tipo, false).all
       else
-        if (!titulo.blank? and !fecha.blank?)
-          @res=Hospedaje.where("titulo =? AND tipo_id =? or fecha =?", titulo, tipo, fecha).all
+        if (!titulo.blank? and !fecha.blank? and !tipo.blank?)
+          @res=Hospedaje.where("titulo like ? AND tipo_id =? AND fecha =? AND borrado =?", "%#{titulo}%", tipo, fecha, false).all
         else
-          if (!lugar.blank? and !fecha.blank?)
-            @res=Hospedaje.where("lugar =? AND tipo_id =? AND fecha =?", lugar, tipo, fecha).all 
+          if (!lugar.blank? and !fecha.blank? and !tipo.blank?)
+            @res=Hospedaje.where("lugar like ? AND tipo_id =? AND fecha =? AND borrado =?", "%#{lugar}%", tipo, fecha, false).all 
           else
-            if (!titulo.blank?)
-              @res=Hospedaje.where("titulo =? AND tipo_id =?",titulo, tipo)
+            if (!titulo.blank? and !lugar.blank?)
+              @res=Hospedaje.where("titulo like ? AND lugar like ? AND borrado =?", "%#{titulo}%", "%#{lugar}%", false).all
             else
-              if (!lugar.blank?)
-                @res=Hospedaje.where("lugar =? AND tipo_id =?", lugar, tipo)
+              if (!lugar.blank? and !fecha.blank?)
+                @res=Hospedaje.where("lugar like ? AND fecha =? AND borrado =?", "%#{lugar}%", fecha, false).all
               else
-                if (!fecha.blank?)
-                  @res=Hospedaje.where("fecha =? or tipo_id =?", fecha, tipo)
+                if (!fecha.blank? and !titulo.blank?)
+                  @res=Hospedaje.where("fecha =? AND titulo like ? AND borrado =?", fecha, "%#{titulo}%", false).all
                 else
-                  @res=Hospedaje.where("tipo_id =?", tipo)
+                  if (!fecha.blank? and !tipo.blank?)
+                    @res=Hospedaje.where("fecha =? AND tipo_id =? AND borrado =?", fecha, tipo, false).all
+                  else
+                    if  (!titulo.blank? and !tipo.blank?)
+                      @res=Hospedaje.where("titulo like ? AND tipo_id =? AND borrado =?", "%#{titulo}%", tipo, false).all
+                    else
+                      if (!lugar.blank? and !tipo.blank?)
+                        @res=Hospedaje.where("lugar like ? AND tipo_id =? AND borrado =?", "%#{lugar}%", tipo, false).all
+                      else
+                        if (!titulo.blank?)
+                          @res=Hospedaje.where("titulo like ? AND borrado =?", "%#{titulo}%", false).all
+                        else
+                          if (!lugar.blank?)
+                            @res=Hospedaje.where("lugar like ? AND borrado =?", "%#{lugar}%", false).all
+                          else
+                            if (!fecha.blank?)
+                              @res=Hospedaje.where("fecha =? AND borrado =?", fecha, false).all
+                            else
+                              if (!tipo.blank?)
+                                @res=Hospedaje.where("tipo_id =? AND borrado =?", tipo, false).all
+                              end
+                            end
+                          end
+                        end
+                      end
+                    end
+                  end
                 end
              end
             end
@@ -73,6 +105,7 @@ class HospedajesController < ApplicationController
     @hospedaje = Hospedaje.new(hospedaje_params)
     @hospedaje.fecha = Time.now
     @hospedaje.user_id = current_user.id
+    @hospedaje.borrado= false
     if @hospedaje.save
       flash[:success] = "Hospedaje publicado"
       redirect_to @hospedaje
@@ -85,7 +118,12 @@ class HospedajesController < ApplicationController
 	def destroy
     
     if (@hospedaje.user_id== current_user.id) then
-		  @hospedaje.destroy()
+      if (@hospedaje.reservas.count==0)
+		    @hospedaje.destroy()
+      else
+        @hospedaje.borrado=true
+        @hospedaje.save
+      end
       flash[:success] = "Hospedaje  borrado"
     else
       flash[:danger] = "Operacion no permitida"

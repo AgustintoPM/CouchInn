@@ -15,11 +15,11 @@
 		<th> Foto </th>
 		<th> Lugar </th>
 		<th> Detalles </th>
-		<th> Eliminar </th>
 	</tr>
 
 	<% hospedajes = Hospedaje.all %>
 	<% hospedajes.each do |hospedaje| %>
+		<% if !hospedaje.borrado %>
 		<tr>
 			<td> <%= hospedaje.titulo %> </td>
 			<%if (hospedaje.user.premium?) %>
@@ -31,12 +31,9 @@
 			<td>
 				<%= link_to "Ver", hospedaje %>
 			</td>
-			<td>
-				<%= link_to "Borrar", hospedaje, method: :delete %>
-			</td>
 		</tr>
 	<% end %>
-
+	<% end %>
 	<% if hospedajes.size == 0 %>
 		<tr> <td colspan="3"> No hay hospedajes </td> </tr>
 	<% end %>
@@ -46,3 +43,4 @@
 <% if logged_in?   %>
 	<%= link_to 'Crear Hospedaje', new_hospedaje_path,  class: "btn btn-primary" %>
 <% end %>
+	<%= link_to 'Buscar Hospedaje', search_path, class: "btn btn-primary" %>

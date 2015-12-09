@@ -1,7 +1,7 @@
 class CreditcardsController < ApplicationController
 
   def new
-  	@user.CreditCard = CreditCard.new
+  	@credit_card = CreditCard.new
   end
 
 

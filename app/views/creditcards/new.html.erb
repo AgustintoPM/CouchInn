@@ -2,7 +2,7 @@
 <h1>Actualice su cuenta a premium</h1>
 <div class="row">
 		<div class="col-md-6 col-md-offset-3">
-				<%= form_for(@user.credit_card) do |f| %>
+				<%= form_for(@credit_card) do |f| %>
 						<%=	render 'shared/error_messages'	%>
 						<h3>Para mejorar su cuenta debera ingresar los digitos de su tarjeta de credito</h3>
 						<h3>El costo es de $10 abonados una unica vez.</h3>
@@ -10,7 +10,7 @@
 						<%=	f.label :Nombre_del_titular %>
 						<%=	f.text_field :name, class: 'form-control' %>
 						<%=	f.label :Ultimos_4_digitos %>
-						<%=	f.text_field :last4digit, class: 'form-control' %>
+						<%=	f.text_field :lastfourdigit, class: 'form-control' %>
 						<%=	f.label :Direccion %>
 						<%=	f.text_field :adress, class: 'form-control' %>
 						<%=	f.label :Telefono %>
@@ -21,8 +21,3 @@
 				<% end %>
 		</div>
 </div>
-
-
-
-
-

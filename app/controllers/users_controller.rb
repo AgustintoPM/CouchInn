@@ -48,15 +48,17 @@ class UsersController < ApplicationController
   def upgrade
     require 'securerandom'  
     @user = current_user
-    exito = SecureRandom.random_number.round
-      if exito == 1
-        @user.premium = true
-        @user.save
-        flash[:success] = "Felicitaciones, es usuario premium."
-      else
-        flash[:danger] = "Hubo un error validando su tarjeta, vuelva a intentar en unos minutos, por favor."
-        redirect_to @user 
-      end 
+    #exito = SecureRandom.random_number.round
+      #if exito == 1
+        
+        render 'creditcards/new'
+        #@user.premium = true
+        #@user.save
+        #flash[:success] = "Felicitaciones, es usuario premium."
+     # else
+       # flash[:danger] = "Hubo un error validando su tarjeta, vuelva a intentar en unos minutos, por favor."
+        #redirect_to @user 
+      #end 
     end  
 
  

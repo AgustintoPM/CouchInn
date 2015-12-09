@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  adress: MyString
+  cardtype: MyString
+  last4digit: MyString
+  expdate: 2015-12-05 01:18:04
+  phone: MyString
+  name: MyString
+
+two:
+  adress: MyString
+  cardtype: MyString
+  last4digit: MyString
+  expdate: 2015-12-05 01:18:04
+  phone: MyString
+  name: MyString

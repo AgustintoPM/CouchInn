@@ -1,0 +1,2 @@
+class UserFeedbackController < ApplicationController
+end

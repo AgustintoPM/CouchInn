@@ -21,21 +21,21 @@ class ReservasController < ApplicationController
     @reserva.user= current_user
     @rese= Reserva.all
     lala=true
-    now=DateTime.now
     @rese.each do |r|
-      if r.hospedaje_id == :hospedaje_id
-        if (:hasta < r.desde ) | (:desde > r.hasta )
-          lala=true
-        else
+      if r.hospedaje_id == @reserva.hospedaje_id and r.aceptado
+        if !(@reserva.hasta < r.desde ) | (@reserva.desde > r.hasta )
           lala=false
+        
         end
       end
     end
 
-    if (:desde > now)
-      if not Reserva.exists?(:user_id => current_user.id, :hospedaje_id =>@reserva.hospedaje.id) 
-
-        if  lala
+    
+      if  Reserva.exists?(:user_id => current_user.id, :hospedaje_id =>@reserva.hospedaje.id) 
+         redirect_to hospedajes_path
+          flash[:danger] = 'Ya solicito este hospedaje'
+      else
+        if lala
 
           if @reserva.save 
             redirect_to  @reserva, notice: 'reserva creada correctamente'
@@ -48,17 +48,9 @@ class ReservasController < ApplicationController
             flash[:danger] = 'fecha ocupada'
         end
 
-      else
-          redirect_to hospedajes_path
-          flash[:danger] = 'Ya solicito este hospedaje'
+     
       end
-    else
-      redirect_to new_reserva_url(@reserva.hospedaje_id)
-      flash[:danger] = 'La fecha no puede ser anterior al dia de hoy'
-    end        
-
-  end
-
+    end  
   def destroy
       @reserva= Reserva.find(params[:id])
       @reserva.destroy
@@ -67,7 +59,6 @@ class ReservasController < ApplicationController
     
   	 	end
   end
-
  def logged_in_user
       unless logged_in?
         store_location
@@ -77,10 +68,22 @@ class ReservasController < ApplicationController
   end
 
   def aceptar
-     @rese = Reserva.find(params[:id])
+    @rese = Reserva.find(params[:id])
     @rese.fecha= Time.now #fecha de aceptacion de la reserva
     @rese.aceptado = true
-    @rese.save
+    lala=true
+    @re= Reserva.where("hospedaje_id =?", @rese.hospedaje_id).all
+    @re.each do |r|
+      if !(@rese.hasta < r.desde ) | (@rese.desde > r.hasta ) and r.aceptado
+        lala=false
+      end
+    end
+    if lala
+      @rese.save
+      redirect_to  @rese, notice: 'reserva aceptada correctamente'
+    else
+    flash[:danger] = "Fecha ocupada"
+    end
   end
   
   

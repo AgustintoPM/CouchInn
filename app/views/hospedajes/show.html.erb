@@ -31,16 +31,15 @@
 		<th> Ver Usuario </th>
 		<th> Aceptar solicitud </th>
 		<th> Detalles </th>
+		<th> Desde </th>
+		<th> Hasta </th>
+
 		
 	</tr>
 
 	
-	<% lala =false%>
-
-	 <% reservas = Reserva.all %>
-	 <% reservas.each do |p| %>
-	 	<% lala =p.aceptado%>
-	 <% end %>
+	
+	 <% reservas= Reserva.all %>
 	
 		<% reservas.each do |r| %>
 			<tr>
@@ -51,14 +50,15 @@
 					<td> Reserva Rechazada </td>
 				<% end %>
 				<td> <%= link_to User.find(r.user_id).name, controller: "users", action: "show", id: r.user_id %> </td>
-				<% if not lala %> 
+				<% if r.aceptado %>
+					<td> Reserva Aceptada </td>
+				<% else %>	 
 					<td> <%= link_to "Aceptar", controller: "reservas", action: "aceptar", id: r.id %> </td>
-				<% else %>
-					<td> <%= link_to "Rechazar", controller: "reservas", action: "rechazar", id: r.id %> </td>
+				
 				<% end %>
-				<td>
-					<%= link_to "Ver", r %>
-				</td>
+				<td><%= link_to "Ver", r %>	</td>
+				<td><%= r.desde.to_date %>	</td>
+				<td><%= r.hasta.to_date %>	</td>
 				<% end %>
 			</tr>
 		<% end %>

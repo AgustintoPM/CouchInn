@@ -6,7 +6,8 @@
 		
 		<th> Hospedaje  </th>
 		<th> Detalles </th>
-		
+
+		<th> Eliminar </th>
 	</tr>
 
 	
@@ -22,6 +23,8 @@
 			<td> <%= r.hospedaje.titulo %> </td>
 			<td>
 				<%= link_to "Ver", r %>
+			</td>
+			<td><%= link_to "Eliminar", r,method: :delete %>
 			</td>
 			<% end %>
 		</tr>

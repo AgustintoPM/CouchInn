@@ -14,11 +14,19 @@
 <p>Capacidad : <%= Hospedaje.find(params[:format]).capacidad %></p>
 <%= image_tag Hospedaje.find(params[:format]).foto %>
 
- <div class="row">
- <div class="col-md-6 col-md-offset-3">
+ <div class="field">
+ 
    <%= f.hidden_field :hospedaje_id, :value => params[:format]%>
+  <%= f.label :desde, 'Desde' %>
+  <%= f.date_select :desde, start_year: 2015,end_year: 2050 %>
+  </div>
+ <div class="field">
+
+  <%= f.label :hasta, 'Hasta' %>
+  <%= f.date_select :hasta, start_year: 2015,end_year: 2050 %>
+ </div >
    
-    <%= f.submit "Solicitar Reserva", class: "btn btn-primary" %>
- </div>
- </div>
+  <%= f.submit "Solicitar Reserva", class: "btn btn-primary" %>
+ 
+<p></p>
 <% end %>

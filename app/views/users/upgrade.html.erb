@@ -2,21 +2,37 @@
 <h1>Actualice su cuenta a premium</h1>
 <div class="row">
 		<div class="col-md-6 col-md-offset-3">
-				<%= form_for(@user.credit_card) do |f| %>
-						<%=	render 'shared/error_messages'	%>
+				<%= form_for(@credit_card) do |f| %>
+						<% if @credit_card.errors.any? %>
+						 <div id="error_explanation">
+  						 <div class="alert alert-danger">
+  						  The form contains <%= pluralize(@credit_card.errors.count, "error") %>.
+  						</div>
+ 						 <ul>
+  							<% @credit_card.errors.full_messages.each do |msg| %>
+  						 	<li><%= msg %></li>
+  							<% end	%>
+  						</ul>
+						</div>
+						<% end %>
+
 						<h3>Para mejorar su cuenta debera ingresar los digitos de su tarjeta de credito</h3>
 						<h3>El costo es de $10 abonados una unica vez.</h3>
 						<h3>Sus beneficios, todas las publicaciones tendran una foto real adosada en la busqueda.</h3>
 						<%=	f.label :Nombre_del_titular %>
 						<%=	f.text_field :name, class: 'form-control' %>
-						<%=	f.label :Ultimos_4_digitos %>
-						<%=	f.text_field :last4digit, class: 'form-control' %>
+						<%=	f.label :Numero_de_seguridad %>
+						<%=	f.password_field :securitynumber, class: 'form-control' %>
 						<%=	f.label :Direccion %>
 						<%=	f.text_field :adress, class: 'form-control' %>
+						<%=	f.label :Fecha_de_vencimiento %>
+						<%=	f.text_field :expdate, class: 'form-control',type: "date", min: Date.today.strftime('%Y-%m-%d') %>
+						<%=	f.label :Tipo_de_tarjeta %>
+						<%=	f.text_field :cardtype, class: 'form-control' %>
 						<%=	f.label :Telefono %>
 						<%=	f.text_field :phone, class: 'form-control' %>
 						<%=	f.label :Tarjeta_de_credito %>
-						<%=	f.text_field :credit_card, class: 'form-control' %>
+						<%=	f.text_field :fullnumber, class: 'form-control' %>
 						<%=	f.submit "Deseo mejorar mi cuenta a premium", class: "btn btn-primary" %>
 				<% end %>
 		</div>

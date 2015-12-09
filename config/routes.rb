@@ -30,8 +30,10 @@ Rails.application.routes.draw do
 
 
  get '/users/upgrade' => 'users#upgrade'
+ 
 
- put '/users/upgrade' => 'users#upgrade'
+
+ 
 
  get '/search' => 'hospedajes#search'
  get '/search/hospedajes' => 'hospedajes#consulta'
@@ -56,7 +58,7 @@ get 'hospedajes/:id/rechazar', to: 'reservas#rechazar'
  resources :hospedajes
  resources :tipos
  resources :reservas
- resources :credit_card 
+ resources :credit_cards
 
 
   # The priority is based upon order of creation: first created -> highest priority.

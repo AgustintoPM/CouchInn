@@ -16,9 +16,11 @@ class ReservasController < ApplicationController
   end
   def	create
     @reserva = Reserva.new(reserva_params)
-    @reserva.hospedaje = Hospedaje.find(@reserva.hospedaje_id)
+    h= Hospedaje.find(@reserva.hospedaje_id)
+    @reserva.hospedaje = h
     @reserva.aceptado = false
     @reserva.user= current_user
+    @reserva.propietario_id= h.user_id
     rese= Reserva.where("hospedaje_id =? and aceptado =?", @reserva.hospedaje_id, true).all
     la=true
     if !(@reserva.desde.nil? and @reserva.hasta.nil?)

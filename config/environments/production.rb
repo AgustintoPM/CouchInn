@@ -26,20 +26,11 @@ Rails.application.configure do
 
 
   host='https://gentle-spire-4321.herokuapp.com/'
-  config.action_mailer.default_url_options = { :host => host }
+  config.action_mailer.default_url_options = { :host => 'https://gentle-spire-4321.herokuapp.com/' }
   config.action_mailer.asset_host = "https://gentle-spire-4321.herokuapp.com/"
-  config.action_mailer.delivery_method = :sendmail #aca era smtp
+  config.action_mailer.delivery_method = :smtp #aca era sendmail
   config.action_mailer.default :charset => "utf-8"  
-  config.action_mailer.smtp_settings = {
-   address: "smtp.gmail.com",
-   port: 587,
-   domain: "https://gentle-spire-4321.herokuapp.com/",
-   authentication: "plain",
-   enable_starttls_auto: true,
-   user_name: "angelicabufartanelo@gmail.com",
-   password: 'ingenieria.2015',
-   :enable_starttls_auto => false
- }
+
 
 
   # Compress JavaScripts and CSS.

@@ -4,6 +4,7 @@
     <section class="user_info">
        <h1>
 	<%= @user.name %>
+
        </h1>
      </section>
   </aside>
@@ -19,6 +20,7 @@
 </div>
 <div class="field">
 <p> <%= link_to "Mis Reservas Solicitadas", controller: "reservas", action: "index" , class: "btn btn-primary" %> </p>
+<p> <%= link_to "Hospedajes Publicados", controller: "users", action: "hospedajes", class: "btn btn-primary" %> </p>
 <p> <%= link_to "Lugares donde me hospede", controller: "reservas", action: "index_hospedajes", class: "btn btn-primary" %> </p>
 
 </div>

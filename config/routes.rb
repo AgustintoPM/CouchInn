@@ -31,9 +31,14 @@ Rails.application.routes.draw do
 
  get '/users/upgrade' => 'users#upgrade'
  
-
-
- 
+  #ver solicitudes aceptadas entre dos fechas
+  get '/buscar_solicitudes' => 'users#buscar_solicitudes'
+  get '/solicitudes_aceptadas' => 'users#solicitudes_aceptadas'
+  
+  #ver ganancias entre dos fechas
+  get '/users/buscar_ganancias' => 'users#buscar_ganancias'
+  get '/ganancias' => 'users#ganancias'
+  post '/ganancias' => 'users#ganancias'
 
  get '/search' => 'hospedajes#search'
  get '/search/hospedajes' => 'hospedajes#consulta'

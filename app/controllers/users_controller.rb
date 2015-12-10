@@ -1,8 +1,8 @@
 
 class UsersController < ApplicationController
-  before_action :logged_in_user, only: [:index, :edit, :update, :destroy]
+  before_action :logged_in_user, only: [:index, :edit, :update, :destroy, :buscar_solicitudes]
   before_action :correct_user, only: [:edit, :update]
-  before_action :admin_user, only: :destroy
+  before_action :admin_user, only: [:destroy, :buscar_ganancias]
   
 
   def new
@@ -73,7 +73,57 @@ class UsersController < ApplicationController
 
   #hospedajes de un usuario
   def hospedajes
-    @hospedajes=Hospedaje.where("user_id=? and  borrado=?",current_user.id,false).all?
+    @hospedajes=Hospedaje.where("user_id=? and  borrado=?",current_user.id,false).all
+  end
+  
+    #buscar ganancias
+  def buscar_ganancias
+    
+  end
+  
+  def buscar_solicitudes
+    
+  end
+  
+  def solicitudes_aceptadas
+    aux=params[:desde]
+    v_aux=params[:hasta]
+    if (!aux["desde(1i)"].blank? and !aux["desde(2i)"].blank? and !aux["desde(3i)"].blank? and (!v_aux["hasta(1i)"].blank? and !v_aux["hasta(2i)"].blank? and !v_aux["hasta(3i)"].blank?))
+      @desde=Date.parse params[:desde].values.join("-")
+      @hasta=Date.parse params[:hasta].values.join("-")
+      if (@desde > @hasta )
+        flash[:danger] = "la fecha ingresada en el campo desde debe ser menor que la fecha ingresada en el campo hasta"
+        redirect_to '/buscar_solicitudes'
+      end
+      @aceptados= Reserva.where("fecha <=? and fecha >=? and propietario_id =?", @hasta, @desde, current_user.id).all
+      puts(@aceptados)
+    else
+      flash[:danger] = "Debe ingresar una fecha"
+      render 'buscar_solicitudes' 
+    end
+    
+  end
+  
+  def ganancias
+    costo_premium=10
+    aux=params[:desde]
+    v_aux=params[:hasta]
+    if (!aux["desde(1i)"].blank? and !aux["desde(2i)"].blank? and !aux["desde(3i)"].blank? and (!v_aux["hasta(1i)"].blank? and !v_aux["hasta(2i)"].blank? and !v_aux["hasta(3i)"].blank?))
+      @desde=Date.parse params[:desde].values.join("-")
+      @hasta=Date.parse params[:hasta].values.join("-")
+      if (@desde > @hasta )
+        flash[:danger] = "la fecha ingresada en el campo desde debe ser menor que la fecha ingresada en el campo hasta"
+        redirect_to '/users/buscar_ganancias'
+      end
+      cantidad= CreditCard.where("created_at <=? and created_at >=?", @hasta, @desde).count
+      @ganancia=cantidad*costo_premium
+      puts(@ganancia)
+    else
+      flash[:danger] = "Debe ingresar una fecha"
+      render 'buscar_ganancias' 
+    end
+    
+
   end
 
 

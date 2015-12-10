@@ -1,0 +1,9 @@
+<h1>Buscar Solicitudes Aceptadas</h1>
+<%= form_tag "/solicitudes_aceptadas", method: "get" do %>
+<%= label_tag :desde, 'Desde' %>
+<%= date_select(:desde, "desde", include_blank: true, end_year: Date.today.year) %>
+<%= label_tag :hasta, 'Hasta' %>
+<%= date_select(:hasta, "hasta", include_blank: true, end_year: Date.today.year) %>
+
+<%= submit_tag 'Buscar' %>
+<% end %>

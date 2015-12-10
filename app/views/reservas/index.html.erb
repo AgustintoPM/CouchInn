@@ -10,6 +10,7 @@
 		<th> Desde </th>
 		<th> Hasta </th>
 		<th> Eliminar </th>
+		<th> Contacto </th>
 
 	</tr>
 
@@ -27,11 +28,16 @@
 			<td>
 				<%= link_to "Ver", r %>
 			</td>
-			<td> <%= r.desde.to_date %> </td>
-			<td> <%= r.hasta.to_date %> </td>
+			<td> <%= r.desde %> </td>
+			<td> <%= r.hasta %> </td>
 			<td><%= link_to "Eliminar", r,method: :delete %>
 			</td>
+			<% if r.aceptado %>
+				<td> <%= User.find(r.hospedaje.user_id).email %> </td>
+			<% else %>
+				<td> La informacion de Contacto aparecera una vez aceptada la reserva </td>
 			<% end %>
 		</tr>
+		<% end %>
 	<% end %>
  </table>

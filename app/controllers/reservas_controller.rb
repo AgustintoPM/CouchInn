@@ -19,23 +19,30 @@ class ReservasController < ApplicationController
     @reserva.hospedaje = Hospedaje.find(@reserva.hospedaje_id)
     @reserva.aceptado = false
     @reserva.user= current_user
-    @rese= Reserva.all
-    lala=true
-    @rese.each do |r|
-      if r.hospedaje_id == @reserva.hospedaje_id and r.aceptado
-        if !(@reserva.hasta < r.desde ) | (@reserva.desde > r.hasta )
-          lala=false
+    rese= Reserva.where("hospedaje_id =? and aceptado =?", @reserva.hospedaje_id, true).all
+    la=true
+    if !(@reserva.desde.nil? and @reserva.hasta.nil?)
+      if rese.count==0
+        la = true
+      else
+        rese.each do |r|
         
+          if (@reserva.hasta < r.desde ) | (@reserva.desde > r.hasta )
+            la=true
+          else
+            la=false
+          
+          end
         end
       end
-    end
+
 
     
       if  Reserva.exists?(:user_id => current_user.id, :hospedaje_id =>@reserva.hospedaje.id) 
          redirect_to hospedajes_path
           flash[:danger] = 'Ya solicito este hospedaje'
       else
-        if lala
+        if la
 
           if @reserva.save 
             redirect_to  @reserva, notice: 'reserva creada correctamente'
@@ -50,7 +57,12 @@ class ReservasController < ApplicationController
 
      
       end
-    end  
+    else
+      redirect_to new_reserva_url(@reserva.hospedaje_id)
+      flash[:danger] = 'Las fechas no pueden estar en blanco'
+
+    end
+  end  
   def destroy
       @reserva= Reserva.find(params[:id])
       @reserva.destroy
@@ -70,19 +82,28 @@ class ReservasController < ApplicationController
   def aceptar
     @rese = Reserva.find(params[:id])
     @rese.fecha= Time.now #fecha de aceptacion de la reserva
-    @rese.aceptado = true
-    lala=true
-    @re= Reserva.where("hospedaje_id =?", @rese.hospedaje_id).all
-    @re.each do |r|
-      if !(@rese.hasta < r.desde ) | (@rese.desde > r.hasta ) and r.aceptado
-        lala=false
+    
+    lala = true
+    re= Reserva.where("hospedaje_id =? and aceptado =?", @rese.hospedaje_id, true).all
+    if re.count == 0
+      lala=true
+    else
+      re.each do |r|
+        if not((@rese.hasta < r.desde ) | (@rese.desde > r.hasta )) 
+        lala= false
+        end
       end
     end
-    if lala
-      @rese.save
+    if lala == true
+      @rese.aceptado = true
+      
+      @rese.send_email
       redirect_to  @rese, notice: 'reserva aceptada correctamente'
-    else
-    flash[:danger] = "Fecha ocupada"
+      @rese.save
+    else 
+      redirect_to @rese.hospedaje      flash[:danger] = "Fecha ya reservada"
+
+    
     end
   end
   

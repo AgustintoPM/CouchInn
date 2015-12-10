@@ -59,8 +59,8 @@ ActiveRecord::Schema.define(version: 20151209021812) do
     t.boolean  "aceptado"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
-    t.datetime "desde"
-    t.datetime "hasta"
+    t.date     "desde"
+    t.date     "hasta"
   end
 
   create_table "tipos", force: :cascade do |t|

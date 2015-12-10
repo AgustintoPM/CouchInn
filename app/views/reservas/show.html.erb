@@ -6,8 +6,8 @@
 <p>Hospedaje : <%= @reserva.hospedaje.titulo %></p>
 <p>Capacidad : <%= @reserva.hospedaje.capacidad %></p>
 <%= image_tag @reserva.hospedaje.foto %>
-<p>Desde : <%= @reserva.desde.to_date %></p>
-<p>Hasta : <%= @reserva.hasta.to_date %></p>
+<p>Desde : <%= @reserva.desde %></p>
+<p>Hasta : <%= @reserva.hasta %></p>
 
 <% if @reserva.aceptado %>
 	<p> Reserva Aceptada </p>

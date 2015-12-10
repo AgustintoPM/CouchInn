@@ -14,4 +14,8 @@ class UserMailer < ApplicationMailer
 		@user = user
 		mail to: user.email, subject: "Restablecimiento de clave CouchInn"
 	end
+	def enviar_mail(reserva)
+		@reserva=reserva
+		mail to: reserva.user.email, subjet: "Su reserva fue aceptada"
+	end
 end

@@ -21,6 +21,10 @@
 
 <% end %>
 <p></p>
+<%= link_to "Calificar", new_hospedajesfeedback_path(@hospedaje.id), class: "btn btn-primary" %>
+<%= link_to "Calificaciones", hospedajesfeedbacks_path(@hospedaje.id), class: "btn btn-primary" %>
+
+<p></p>
 
 <% if logged_in? and current_user.id == @hospedaje.user_id %>
 

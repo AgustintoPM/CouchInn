@@ -60,7 +60,7 @@ get 'reservas/index_hospedajes', to: 'reservas#index_hospedajes'
  resources :tipos
  resources :reservas
  resources :credit_cards
-
+ resources :hospedajesfeedbacks
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

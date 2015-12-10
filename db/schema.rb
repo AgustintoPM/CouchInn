@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151209021812) do
+ActiveRecord::Schema.define(version: 20151210205205) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,6 +50,15 @@ ActiveRecord::Schema.define(version: 20151209021812) do
     t.integer  "tipo_id"
     t.string   "comentario_id"
     t.boolean  "borrado"
+  end
+
+  create_table "hospedajesfeedbacks", force: :cascade do |t|
+    t.string   "descripcion"
+    t.integer  "puntaje"
+    t.integer  "destino_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "user_id"
   end
 
   create_table "reservas", force: :cascade do |t|

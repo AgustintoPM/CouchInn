@@ -1,0 +1,35 @@
+<h1>Lista de Calificaciones</h1>
+
+      <table class="table">
+
+      <tr>
+        <th> descripcion </th>
+        <th> puntaje </th>
+        
+        
+      </tr>
+      <% b=0 %>
+     <% a=0 %>
+      <% @hospedajefeedback.each do |h| %>
+      <tr>
+            <% if (h.destino_id == params[:format].to_i) %>
+              <td><%= h.descripcion %></td>
+              <td><%= h.puntaje%></td>
+              
+              <% a= a+ h.puntaje %>
+              <% b= b+ 1 %>
+              <% end %>
+
+         
+        
+      </tr>
+        
+      <% end %>
+
+      
+
+      </table>
+    <br>
+    
+     <b> Promedio de Calificaciones </b>   
+     <h3><%= a/b %></h3>

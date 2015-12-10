@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151209021812) do
+ActiveRecord::Schema.define(version: 20151210221803) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -57,10 +57,11 @@ ActiveRecord::Schema.define(version: 20151209021812) do
     t.integer  "hospedaje_id"
     t.datetime "fecha"
     t.boolean  "aceptado"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
     t.date     "desde"
     t.date     "hasta"
+    t.integer  "propietario_id"
   end
 
   create_table "tipos", force: :cascade do |t|

@@ -1,0 +1,32 @@
+<table class="table">
+<h1> Hospedajes </h1>
+
+	<tr>
+		<th> Titulo </th>
+		<th> Foto </th>
+		<th> Lugar </th>
+		<th> Detalles </th>
+
+	</tr>
+
+	
+		<% @reservas.each do |r| %>
+		<% if r.user == current_user and r.hasta < (Date.today + 10.days) %>
+			<% if !r.hospedaje.borrado %>
+		<tr>
+			<td> <%= r.hospedaje.titulo %> </td>
+			<%if (r.hospedaje.user.premium?) %>
+				<td> <%= image_tag hospedaje.foto, size: "46x40" %> </td>
+			<% else %>
+				<td> <%= image_tag 'anonimo.jpg', size: "46x40" %> </td>
+			<% end %>
+			<td> <%= r.hospedaje.lugar %> </td>
+			<td>
+				<%= link_to "Ver", r.hospedaje %>
+			</td>
+		</tr>
+		<% end %>
+	<% end %>
+		<% end %>
+	
+ </table>

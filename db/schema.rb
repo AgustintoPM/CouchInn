@@ -52,6 +52,15 @@ ActiveRecord::Schema.define(version: 20151210221803) do
     t.boolean  "borrado"
   end
 
+  create_table "hospedajesfeedbacks", force: :cascade do |t|
+    t.string   "descripcion"
+    t.integer  "puntaje"
+    t.integer  "destino_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "user_id"
+  end
+
   create_table "reservas", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "hospedaje_id"

@@ -1,0 +1,27 @@
+<% provide(:title, 'Registracion') %>
+<h1>Complete los campos con los datos solicitados</h1>
+
+<div class="row">
+ <div class="col-md-6 col-md-offset-3">
+    <%= form_for(@hospedajefeedback)	do |f| %>
+     <% if @hospedajefeedback.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@hospedajefeedback.errors.count, "error") %> prohibited this tipo from being saved:</h2>
+
+      <ul>
+      <% @hospedajefeedback.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+    <%= f.hidden_field :destino_id, :value => params[:format]%>
+    <%= f.label	:descripcion %>
+    <%= f.text_field :descripcion %>
+    <%= f.label :puntaje %>
+    <%= f.select(:puntaje, options_for_select([[1],[2],[3],[4],[5]], selected: :puntaje )) %>
+    
+    <%= f.submit "Calificar", class: "btn btn-primary" %>
+    <% end %>
+ </div>
+</div>

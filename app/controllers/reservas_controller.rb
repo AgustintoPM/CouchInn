@@ -38,10 +38,7 @@ class ReservasController < ApplicationController
 
 
     
-      if  Reserva.exists?(:user_id => current_user.id, :hospedaje_id =>@reserva.hospedaje.id) 
-         redirect_to hospedajes_path
-          flash[:danger] = 'Ya solicito este hospedaje'
-      else
+      
         if la
 
           if @reserva.save 
@@ -56,7 +53,7 @@ class ReservasController < ApplicationController
         end
 
      
-      end
+     
     else
       redirect_to new_reserva_url(@reserva.hospedaje_id)
       flash[:danger] = 'Las fechas no pueden estar en blanco'
@@ -97,7 +94,7 @@ class ReservasController < ApplicationController
     if lala == true
       @rese.aceptado = true
       
-      @rese.send_email
+      #@rese.send_email
       redirect_to  @rese, notice: 'reserva aceptada correctamente'
       @rese.save
     else 
@@ -118,6 +115,9 @@ class ReservasController < ApplicationController
         
       end
     end
+  end
+  def index_hospedajes
+    @reservas= Reserva.all
   end
   private
   # Use callbacks to share common setup or constraints between actions.

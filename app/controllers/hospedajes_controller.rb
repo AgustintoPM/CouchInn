@@ -100,6 +100,7 @@ class HospedajesController < ApplicationController
 	#mostrar un hospedaje
 	def show
 		@hospedaje = Hospedaje.find(params[:id])
+    @reservas= Reserva.all
 	end
   def create
     @hospedaje = Hospedaje.new(hospedaje_params)

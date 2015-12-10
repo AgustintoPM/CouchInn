@@ -17,7 +17,7 @@
 	<%end%>
 <% end %>
 <% if logged_in? and current_user.id != @hospedaje.user_id %>
-	<%= link_to "Reservar", new_reserva_path(@hospedaje.id) %>
+	<%= link_to "Reservar", new_reserva_path(@hospedaje.id), class: "btn btn-primary" %>
 
 <% end %>
 <p></p>
@@ -40,9 +40,9 @@
 
 	
 	
-	 <% reservas= Reserva.all %>
+	 
 	
-		<% reservas.each do |r| %>
+		<% @reservas.each do |r| %>
 			<tr>
 			 <% if r.hospedaje_id == @hospedaje.id %>
 				<% if r.aceptado %>
@@ -50,7 +50,7 @@
 				<% else %>
 					<td> Reserva Rechazada </td>
 				<% end %>
-				<td> <%= link_to User.find(r.user_id).name, controller: "users", action: "show", id: r.user_id %> </td>
+				<td> <%= link_to r.hospedaje.user.name, controller: "users", action: "show", id: r.user_id %> </td>
 				<% if r.aceptado %>
 					<td> Reserva Aceptada </td>
 				<% else %>	 

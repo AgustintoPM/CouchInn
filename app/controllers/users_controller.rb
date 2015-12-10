@@ -75,6 +75,33 @@ class UsersController < ApplicationController
   def hospedajes
     @hospedajes=Hospedaje.where("user_id=? and  borrado=?",current_user.id,false).all?
   end
+  
+    #buscar ganancias
+  def buscar_ganancias
+    
+  end
+  
+  def ganancias
+    costo_premium=10
+    aux=params[:desde]
+    v_aux=params[:hasta]
+    if (!aux["desde(1i)"].blank? and !aux["desde(2i)"].blank? and !aux["desde(3i)"].blank? and (!v_aux["hasta(1i)"].blank? and !v_aux["hasta(2i)"].blank? and !v_aux["hasta(3i)"].blank?))
+      @desde=Date.parse params[:desde].values.join("-")
+      @hasta=Date.parse params[:hasta].values.join("-")
+      if (@desde > @hasta )
+        flash[:danger] = "la fecha ingresada en el campo desde debe ser menor que la fecha ingresada en el campo hasta"
+        redirect_to '/users/buscar_ganancias'
+      end
+      cantidad= CreditCard.where("created_at <=? and created_at >=?", @hasta, @desde).count
+      @ganancia=cantidad*costo_premium
+      puts(@ganancia)
+    else
+      flash[:danger] = "Debe ingresar una fecha"
+      render 'buscar_ganancias' 
+    end
+    
+
+  end
 
 
   private

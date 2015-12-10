@@ -28,8 +28,8 @@
 			<td>
 				<%= link_to "Ver", r %>
 			</td>
-			<td> <%= r.desde.to_date %> </td>
-			<td> <%= r.hasta.to_date %> </td>
+			<td> <%= r.desde %> </td>
+			<td> <%= r.hasta %> </td>
 			<td><%= link_to "Eliminar", r,method: :delete %>
 			</td>
 			<% if r.aceptado %>

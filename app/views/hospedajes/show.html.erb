@@ -58,8 +58,8 @@
 				
 				<% end %>
 				<td><%= link_to "Ver", r %>	</td>
-				<td><%= r.desde.to_date %>	</td>
-				<td><%= r.hasta.to_date %>	</td>
+				<td><%= r.desde %>	</td>
+				<td><%= r.hasta %>	</td>
 				<% if r.aceptado %>
 					<td><%= r.user.email %>	</td>
 				<% else %>

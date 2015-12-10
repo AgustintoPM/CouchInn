@@ -21,19 +21,21 @@ class ReservasController < ApplicationController
     @reserva.user= current_user
     rese= Reserva.where("hospedaje_id =? and aceptado =?", @reserva.hospedaje_id, true).all
     la=true
-    if rese.count==0
-      la = true
-    else
-      rese.each do |r|
-      
-        if (@reserva.hasta < r.desde ) | (@reserva.desde > r.hasta )
-          la=true
-        else
-          la=false
+    if !(@reserva.desde.nil? and @reserva.hasta.nil?)
+      if rese.count==0
+        la = true
+      else
+        rese.each do |r|
         
+          if (@reserva.hasta < r.desde ) | (@reserva.desde > r.hasta )
+            la=true
+          else
+            la=false
+          
+          end
         end
       end
-    end
+
 
     
       if  Reserva.exists?(:user_id => current_user.id, :hospedaje_id =>@reserva.hospedaje.id) 
@@ -55,7 +57,12 @@ class ReservasController < ApplicationController
 
      
       end
-    end  
+    else
+      redirect_to new_reserva_url(@reserva.hospedaje_id)
+      flash[:danger] = 'Las fechas no pueden estar en blanco'
+
+    end
+  end  
   def destroy
       @reserva= Reserva.find(params[:id])
       @reserva.destroy
@@ -82,7 +89,7 @@ class ReservasController < ApplicationController
       lala=true
     else
       re.each do |r|
-        if not(@rese.hasta < r.desde ) | (@rese.desde > r.hasta ) 
+        if not((@rese.hasta < r.desde ) | (@rese.desde > r.hasta )) 
         lala= false
         end
       end
@@ -90,7 +97,7 @@ class ReservasController < ApplicationController
     if lala == true
       @rese.aceptado = true
       
-      #@rese.send_email
+      @rese.send_email
       redirect_to  @rese, notice: 'reserva aceptada correctamente'
       @rese.save
     else 

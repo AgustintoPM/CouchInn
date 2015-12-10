@@ -2,8 +2,8 @@ class Reserva < ActiveRecord::Base
 	belongs_to :user
 	belongs_to :hospedaje
 	validate :fecha_invalida 
-	validates :desde, :presence  => {:message => "Usted debe ingresar una fecha"}
-	validates :hasta, :presence  => {:message => "Usted debe ingresar una fecha"}
+	validates :desde, presence: true 
+	validates :hasta, presence: true 
 	def fecha_invalida
 		
 		if  desde > hasta 

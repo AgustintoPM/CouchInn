@@ -20,7 +20,7 @@ class CreditCardsController < ApplicationController
         end
       else
        flash[:danger] = "Hubo un error validando su tarjeta, vuelva a intentarlo, por favor."
-        
+       render 'users/upgrade'
       end 
   end
 
@@ -32,7 +32,7 @@ class CreditCardsController < ApplicationController
   private
    def creditcard_param 
   
-        params.require(:credit_card).permit( :name,:securitynumber,:fullnumber, :lastfourdigit, :email, :adress, :phone, :expdate, :cardtype)
+        params.require(:credit_card).permit( :name,:securitynumber,:fullnumber, :adress, :phone, :expdate, :cardtype)
     
    end
 

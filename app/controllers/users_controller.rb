@@ -1,12 +1,9 @@
+
 class UsersController < ApplicationController
   before_action :logged_in_user, only: [:index, :edit, :update, :destroy]
   before_action :correct_user, only: [:edit, :update]
   before_action :admin_user, only: :destroy
   
-  #ver los hospedajes de un usuario
-  def hospedajes
-    @hospedajes=Hospedaje.where("user_id =? and borrado =?", current_user.id, false).all 
-  end
 
   def new
    @user = User.new
@@ -18,6 +15,7 @@ class UsersController < ApplicationController
 
   def show
    @user = User.find(params[:id])
+   @user_feedbacks = @user.user_feedbacks.paginate(page: params[:page])
   end
 
   def	create

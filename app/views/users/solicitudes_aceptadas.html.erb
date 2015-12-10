@@ -1,0 +1,19 @@
+<table class="table">
+
+	<tr>
+		<th> Nombre </th>
+		<th> Correo </th>
+
+	</tr>	
+	<% @aceptados.each do |aceptado| %>
+		<tr>
+			<td> <%= aceptado.user.name %> </td>
+
+			<td> <%= aceptado.user.email %> </td>
+
+		</tr>
+	<% end %>
+	<% if @aceptados.size == 0 %>
+		<tr> <td colspan="3"> No acepto a nadie entre esas fechas </td> </tr>
+	<% end %>
+</table>

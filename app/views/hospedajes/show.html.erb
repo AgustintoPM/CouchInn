@@ -33,6 +33,7 @@
 		<th> Detalles </th>
 		<th> Desde </th>
 		<th> Hasta </th>
+		<th> Contacto </th>
 
 		
 	</tr>
@@ -59,8 +60,13 @@
 				<td><%= link_to "Ver", r %>	</td>
 				<td><%= r.desde.to_date %>	</td>
 				<td><%= r.hasta.to_date %>	</td>
+				<% if r.aceptado %>
+					<td><%= r.user.email %>	</td>
+				<% else %>
+					<td> La informacion de Contacto aparecera una vez aceptada la reserva </td>
 				<% end %>
 			</tr>
+			<% end %>
 		<% end %>
 	
 </table>

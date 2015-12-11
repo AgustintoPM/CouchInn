@@ -52,6 +52,7 @@ get 'hospedajes/:id/aceptar', to: 'reservas#aceptar'
 post 'hospedajes/:id/rechazar', to: 'reservas#rechazar'
 get 'hospedajes/:id/rechazar', to: 'reservas#rechazar'
 get 'reservas/index_hospedajes', to: 'reservas#index_hospedajes'
+get 'users/hospedajes', to: 'users#hospedajes'
  #agrego esto  por este problema:
  #No route matches {:action=>"edit", :controller=>"account_activations", :email=>"ani_bellas@hotmail.com", :id=>nil} missing required keys: [:id]
  #get 'account_activation' => 'account_activations#edit', :as => :edit_account_activation

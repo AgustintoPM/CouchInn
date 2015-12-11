@@ -6,10 +6,9 @@
 		
 		<th> Hospedaje  </th>
 		<th> Detalles </th>
-
 		<th> Desde </th>
 		<th> Hasta </th>
-		<th> Eliminar </th>
+		
 		<th> Contacto </th>
 
 	</tr>
@@ -25,13 +24,9 @@
 			<% end %>
 			
 			<td> <%= r.hospedaje.titulo %> </td>
-			<td>
-				<%= link_to "Ver", r %>
-			</td>
+			<td><%= link_to "Ver", r %>	</td>
 			<td> <%= r.desde %> </td>
-			<td> <%= r.hasta %> </td>
-			<td><%= link_to "Eliminar", r,method: :delete %>
-			</td>
+			<td> <%= r.hasta %> </td>			
 			<% if r.aceptado %>
 				<td> <%= User.find(r.hospedaje.user_id).email %> </td>
 			<% else %>
@@ -41,3 +36,5 @@
 		<% end %>
 	<% end %>
  </table>
+ 
+ <%= link_to 'Volver', :back , class: "btn btn-primary"%>

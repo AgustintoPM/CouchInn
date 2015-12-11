@@ -19,10 +19,10 @@
 	</div>
 </div>
 <div class="field">
-<%= link_to "Calificar", new_user_feedback_path(@user.id), class: "btn btn-primary" %>
-<p> <%= link_to "Mis Reservas Solicitadas", controller: "reservas", action: "index" , class: "btn btn-primary" %> </p>
-<p> <%= link_to "Hospedajes Publicados", controller: "users", action: "hospedajes", class: "btn btn-primary" %> </p>
-<p> <%= link_to "Lugares donde me hospede", controller: "reservas", action: "index_hospedajes", class: "btn btn-primary" %> </p>
+<p><%= link_to "Calificar", new_user_feedback_path(@user.id), class: "btn btn-primary" %></p>
+<p> <%= link_to "Mis Reservas Solicitadas", reservas_path, class: "btn btn-primary" %> </p>
+<p> <%= link_to "Hospedajes Publicados", users_hospedajes_path, class: "btn btn-primary" %> </p>
+<p> <%= link_to "Lugares donde me hospede", reservas_index_hospedajes_path, class: "btn btn-primary" %> </p>
 
 </div>
 

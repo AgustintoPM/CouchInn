@@ -10,8 +10,8 @@
     <%= f.label	:descripcion %>
     <%= f.text_field :content %>
     <%= f.label :puntaje %>
-    <%= f.select(:score, options_for_select([[1],[2],[3],[4],[5]], selected: :score )) %>
     
+    <%= f.select(:score, options_for_select([[1],[2],[3],[4],[5]], selected: :score )) %>
     <%= f.submit "Calificar", class: "btn btn-primary" %>
     <% end %>
  </div>

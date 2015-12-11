@@ -9,13 +9,13 @@
      </section>
   </aside>
   <div class="col-md-8">
-		<% if @user.user_feedbacks.any? %>
-			<h3>Calificaciones (<%= @user.user_feedbacks.count %>)</h3>
+		
+			<h3>Calificaciones (<%= @user_feedbacks.count %>)</h3>
 			<ol	class="user_feedbacks">								
 				<%= render @user_feedbacks %>
 			</ol>
 			<%= will_paginate @user_feedbacks %>
-		<% end %>
+		
 	</div>
 </div>
 <div class="field">
@@ -25,3 +25,5 @@
 <p> <%= link_to "Lugares donde me hospede", controller: "reservas", action: "index_hospedajes", class: "btn btn-primary" %> </p>
 
 </div>
+
+

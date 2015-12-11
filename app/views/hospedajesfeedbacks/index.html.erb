@@ -3,6 +3,7 @@
       <table class="table">
 
       <tr>
+        <th> Usuario </th>
         <th> descripcion </th>
         <th> puntaje </th>
         
@@ -13,6 +14,7 @@
       <% @hospedajefeedback.each do |h| %>
       <tr>
             <% if (h.destino_id == params[:format].to_i) %>
+              <td><%= link_to h.user.name, user_path(h.user.id) %></td>
               <td><%= h.descripcion %></td>
               <td><%= h.puntaje%></td>
               
